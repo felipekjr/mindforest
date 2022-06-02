@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.base_app">
+    package="br.com.mindforest">
    <application
-        android:label="base_app"
+        android:label="MindForest"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

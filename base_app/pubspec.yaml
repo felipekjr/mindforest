@@ -24,8 +24,8 @@ dependencies:
     path: ../app_chat
   app_groups:
     path: ../app_groups
-  app_user:
-    path: ../app_user
+  app_login:
+    path: ../app_login
 
 dev_dependencies:
   flutter_test:

@@ -1,4 +1,4 @@
-package com.example.base_app
+package br.com.mindforest
 
 import io.flutter.embedding.android.FlutterActivity
 

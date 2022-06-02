@@ -29,10 +29,10 @@ packages:
       relative: true
     source: path
     version: "0.0.1"
-  app_user:
+  app_login:
     dependency: "direct main"
     description:
-      path: "../app_user"
+      path: "../app_login"
       relative: true
     source: path
     version: "0.0.1"
