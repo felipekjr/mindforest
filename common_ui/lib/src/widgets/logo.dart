@@ -9,16 +9,6 @@ class Logo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ShaderMask(
-      shaderCallback: _createShader,
-      child: Text(
-        'billy',
-        style: TextStyle(
-          fontFamily: 'Allrox',
-          fontSize: 32,
-          color: AppColors.foreground
-        )
-      ),
-    );
+    return Image.asset('logo.png');
   }
 }
