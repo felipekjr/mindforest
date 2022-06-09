@@ -31,7 +31,7 @@ class PrimaryButton extends StatelessWidget {
         ),
         child: Ink(
           decoration: BoxDecoration(
-            color: Colors.black,
+            color: Colors.white,
             gradient: AppColors.gradient,
             borderRadius: BorderRadius.circular(50)
           ),
@@ -41,8 +41,8 @@ class PrimaryButton extends StatelessWidget {
               padding: const EdgeInsets.all(Spacing.x2),
               child: !loading ? Text(
                 title, 
-                style: TextStyles.buttonText(color: AppColors.black2)
-              ) : SpinKitThreeBounce(size: 16, color: AppColors.black2),
+                style: TextStyles.buttonText(color: AppColors.foreground)
+              ) : SpinKitThreeBounce(size: 16, color: AppColors.foreground),
             ),
           ) 
         ),

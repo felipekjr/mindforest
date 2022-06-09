@@ -10,6 +10,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  common_deps:
+    path: ../common_deps
+  common_ui:
+    path: ../common_ui
 
 dev_dependencies:
   flutter_test:

@@ -14,11 +14,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "664561721011-nn42u01p400vvcjfthqlokrbmgpimh0t.apps.googleusercontent.com",
+          "client_id": "664561721011-6q0j8a9jednfovsipkhnv6okp6g3o3rb.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "br.com.mindforest",
-            "certificate_hash": "e90a2442515a1a6dded26fd1d9f94056cf881e51"
+            "certificate_hash": "252992bacfc38bd132915cea8c521ca7bc44cd1c"
           }
         },
         {
@@ -87,4 +87,4 @@
     }
   ],
   "configuration_version": "1"
-}                                                                                                       
+}

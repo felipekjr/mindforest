@@ -1,21 +1,12 @@
 import 'package:flutter/widgets.dart';
 
 class AppColors {
-  static LinearGradient logoGradient = const LinearGradient(
-    begin: Alignment.centerLeft,
-    end: Alignment.centerRight,
-    colors: <Color>[
-      Color(0xff89FF85),
-      Color(0xff80FFE4), 
-    ],
-  );
-
   static LinearGradient gradient = const LinearGradient(
     begin: Alignment.centerLeft,
     end: Alignment.centerRight,
     colors: <Color>[
-      Color(0xff80FFE4), 
-      Color(0xff89FF85),
+      Color(0xff1E5176), 
+      Color(0xff5DBD95),
     ],
   );
 
