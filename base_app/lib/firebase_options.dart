@@ -59,11 +59,12 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyCWCmmjiLjzo-CP8_SXhqvOaDWsrUglQNA',
-    appId: '1:664561721011:ios:1164a32634f1df208e5ac6',
+    appId: '1:664561721011:ios:e43d03f07d368c0d8e5ac6',
     messagingSenderId: '664561721011',
     projectId: 'mindforest-f87d4',
     storageBucket: 'mindforest-f87d4.appspot.com',
-    iosClientId: '664561721011-bb4sl8ubpaep9rvg2acbcl8sfngiq1un.apps.googleusercontent.com',
-    iosBundleId: 'com.example.baseApp',
+    androidClientId: '664561721011-nn42u01p400vvcjfthqlokrbmgpimh0t.apps.googleusercontent.com',
+    iosClientId: '664561721011-oc0esctfat3ckas7ae110n6d2qnq534g.apps.googleusercontent.com',
+    iosBundleId: 'br.com.mindforest',
   );
 }
