@@ -7,13 +7,15 @@ class PrimaryButton extends StatelessWidget {
   final VoidCallback onTap;
   final bool disabled;
   final bool loading;
+  final Widget? icon;
 
   const PrimaryButton({
     Key? key,
     required this.title,
     required this.onTap,
     this.disabled = false,
-    this.loading = false
+    this.loading = false,
+    this.icon
    }) : super(key: key);
 
   @override
@@ -39,9 +41,18 @@ class PrimaryButton extends StatelessWidget {
             alignment: Alignment.center,
             child: Padding(
               padding: const EdgeInsets.all(Spacing.x2),
-              child: !loading ? Text(
-                title, 
-                style: TextStyles.buttonText(color: AppColors.foreground)
+              child: !loading ? Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  if (icon != null) ... [
+                    icon!,
+                    const SizedBox(width: 10,)
+                  ],
+                  Text(
+                    title, 
+                    style: TextStyles.buttonText(color: AppColors.foreground)
+                  ),
+                ],
               ) : SpinKitThreeBounce(size: 16, color: AppColors.foreground),
             ),
           ) 

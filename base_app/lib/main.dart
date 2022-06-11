@@ -1,7 +1,9 @@
+import 'package:app_groups/app_groups.dart';
 import 'package:app_login/app_login.dart';
 import 'package:common_deps/common_deps.dart';
 import 'package:common_ui/common_ui.dart';
 import 'package:core/base_app.dart';
+import 'package:core/core.dart';
 import 'package:core/micro_app.dart';
 import 'package:core/micro_core_utils.dart';
 import 'package:flutter/material.dart';
@@ -23,14 +25,14 @@ class MindForest extends StatelessWidget with BaseApp {
 
   @override
   Widget build(BuildContext context) {
-    super.registerRoutes();
+    super.registerApps();
 
     return MaterialApp(
       title: 'MindForest',
       theme: CustomTheme.data,
       navigatorKey: navigatorKey,
       onGenerateRoute: super.generateRoute,
-      initialRoute: '/login',
+      initialRoute: Routes.login,
     );
   }
 
@@ -39,6 +41,7 @@ class MindForest extends StatelessWidget with BaseApp {
 
   @override
   List<MicroApp> get microApps => [
-    MicroAppLoginResolver()
+    AppLoginResolver(),
+    AppGroupsResolver()
   ];
 }

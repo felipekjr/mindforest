@@ -32,7 +32,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         action!
       ] : [],
       bottom: tabBar,
-      backgroundColor: AppColors.black2,
+      backgroundColor: AppColors.foreground,
       elevation: 0,
       title: Align(
         alignment: Alignment.centerLeft,

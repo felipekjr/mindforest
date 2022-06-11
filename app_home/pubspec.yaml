@@ -1,4 +1,4 @@
-name: common_deps
+name: app_home
 description: A new Flutter package project.
 version: 0.0.1
 homepage:
@@ -10,19 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_svg: ^1.0.3
-  flutter_hooks: ^0.18.3
-  flutter_riverpod: ^1.0.3
-  equatable: ^2.0.3
-  cloud_firestore: ^3.1.14
-  firebase_core: ^1.16.0
-  firebase_auth: ^3.3.17
-  faker: ^2.0.0
-  mocktail: ^0.3.0
-  google_sign_in: ^5.3.3
-  font_awesome_flutter: ^10.1.0
-  get_it: ^7.2.0
-  
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

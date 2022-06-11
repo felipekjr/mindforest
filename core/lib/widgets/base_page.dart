@@ -45,7 +45,7 @@ class _BasePageWidgetState extends State<BasePageWidget> {
             constraints: BoxConstraints(minHeight: MediaQuery.of(context).size.height * .85),
             child: Padding(
               padding: const EdgeInsets.symmetric(
-                vertical: Spacing.x4,
+                vertical: Spacing.x2,
                 horizontal: Spacing.x3
               ),
               child: Column(

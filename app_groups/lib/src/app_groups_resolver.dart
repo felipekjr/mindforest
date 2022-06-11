@@ -1,14 +1,19 @@
+import 'package:app_groups/src/presentation/pages/pages.dart';
 import 'package:core/micro_app.dart';
 import 'package:core/micro_core_utils.dart';
-import 'package:flutter/material.dart';
 
 class AppGroupsResolver implements MicroApp {
   @override
-  String get name => 'bills';
+  String get name => 'groups';
 
   @override
   Map<String, WidgetBuilderArgs> get routes => {
-    '/$name/status': (context, args) => const MaterialApp()
+    name: (context, args) => const GroupsPage()
   };
+
+  @override
+  void registerServices() {
+    // TODO: implement registerServices
+  }
 
 }

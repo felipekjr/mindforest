@@ -43,7 +43,7 @@ class Input extends StatelessWidget {
         focusedBorder: OutlineInputBorder(
           borderRadius: const BorderRadius.all(Radius.circular(8)),
           borderSide: BorderSide(
-            color: AppColors.green,
+            color: AppColors.primary,
             width: .5
           )
         ),
