@@ -4,6 +4,7 @@ import 'package:app_groups/src/presentation/pages/pages.dart';
 import 'package:common_deps/common_deps.dart';
 import 'package:core/micro_app.dart';
 import 'package:core/micro_core_utils.dart';
+import 'package:core/routes.dart';
 
 class AppGroupsResolver implements MicroApp {
   @override
@@ -11,13 +12,18 @@ class AppGroupsResolver implements MicroApp {
 
   @override
   Map<String, WidgetBuilderArgs> get routes => {
-    name: (context, args) => const GroupsPage()
+    name: (context, args) => const GroupsPage(),
+    Routes.groupRegister: (context, args) => const RegisterGroupPage()
   };
 
   @override
   void registerServices() {
-    GetIt.instance.registerSingleton<GroupsController>(
-      GroupsController(repository: GroupRepository())
+    final groupRepository = GroupRepository();
+    GetIt.I.registerSingleton<GroupsController>(
+      GroupsController(repository: groupRepository)
+    );
+    GetIt.I.registerSingleton<RegisterGroupController>(
+      RegisterGroupController(repository: groupRepository)
     );
   }
 

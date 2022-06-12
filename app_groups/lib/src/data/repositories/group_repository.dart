@@ -12,4 +12,10 @@ class GroupRepository {
       return GroupEntity.fromJson(e.data()).copy(id: e.id);
     }).toList();
   }
+
+  Future<GroupEntity> save(GroupEntity entity) async {
+    final res = await FirebaseFirestore.instance.collection('grupos')
+      .add(entity.toJson());
+    return entity.copy(id: res.id);
+  }
 }

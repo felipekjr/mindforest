@@ -26,17 +26,19 @@ class Input extends StatelessWidget {
       style: TextStyles.normalThin(),
       obscureText: obscure,
       decoration:InputDecoration(
-        contentPadding: const EdgeInsets.all(Spacing.x3),
+        fillColor: AppColors.foreground,
+        filled: true,
+        contentPadding: const EdgeInsets.all(Spacing.x2),
         labelText: label,
         hintText: hint,
         hintStyle: TextStyles.normalThin(),
-        labelStyle: TextStyles.normalBold(),
+        labelStyle: TextStyles.normal(),
         errorText: error ? errorText : null,
         errorStyle: TextStyles.smallThin(color: AppColors.red),
         enabledBorder: OutlineInputBorder(
           borderRadius: const BorderRadius.all(Radius.circular(8)),
           borderSide: BorderSide(
-            color: AppColors.foreground,
+            color: AppColors.black,
             width: .5
           )
         ),
@@ -44,21 +46,21 @@ class Input extends StatelessWidget {
           borderRadius: const BorderRadius.all(Radius.circular(8)),
           borderSide: BorderSide(
             color: AppColors.primary,
-            width: .5
+            width: 2
           )
         ),
         errorBorder: OutlineInputBorder(
           borderRadius: const BorderRadius.all(Radius.circular(8)),
           borderSide: BorderSide(
             color: AppColors.red,
-            width: .5
+            width: 2
           )
         ),
         focusedErrorBorder: OutlineInputBorder(
           borderRadius: const BorderRadius.all(Radius.circular(8)),
           borderSide: BorderSide(
             color: AppColors.red,
-            width: .5
+            width: 2
           )
         ),
       ),

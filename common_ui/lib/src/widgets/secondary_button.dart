@@ -24,14 +24,14 @@ class SecondaryButton extends StatelessWidget {
       ),
       child: Ink(
         decoration: BoxDecoration(
-          color: AppColors.currentLine,
+          color: AppColors.primary,
           borderRadius: BorderRadius.circular(50)
         ),
         child: Container(
           alignment: Alignment.center,
           child: Padding(
             padding: const EdgeInsets.all(Spacing.x2),
-            child: Text(title, style: TextStyles.buttonText()),
+            child: Text(title, style: TextStyles.buttonText(color: Colors.white)),
           ),
         ),
       ),

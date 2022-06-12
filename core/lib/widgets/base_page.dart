@@ -39,20 +39,22 @@ class _BasePageWidgetState extends State<BasePageWidget> {
       appBar: widget.title != null ? CustomAppBar(
         title: widget.title!,
       ) : null,
-      body: SafeArea(
-        child: ConstrainedBox(
-          constraints: BoxConstraints(minHeight: MediaQuery.of(context).size.height * .85),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-              vertical: Spacing.x2,
-              horizontal: Spacing.x3
-            ),
-            child: Directionality(
-              textDirection: TextDirection.ltr,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: widget.children
+      body: SingleChildScrollView(
+        child: SafeArea(
+          child: ConstrainedBox(
+            constraints: BoxConstraints(minHeight: MediaQuery.of(context).size.height * .85),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                vertical: Spacing.x2,
+                horizontal: Spacing.x3
+              ),
+              child: Directionality(
+                textDirection: TextDirection.ltr,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: widget.children
+                ),
               ),
             ),
           ),
