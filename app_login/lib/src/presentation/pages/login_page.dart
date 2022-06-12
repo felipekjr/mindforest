@@ -5,18 +5,29 @@ import 'package:common_ui/common_ui.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   LoginPage({ 
     Key? key 
   }) : super(key: key);
 
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   final controller = GetIt.instance<LoginController>();
+
+  @override
+  void dispose() {
+    controller.state.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return BasePageWidget(
       state: controller.state, 
-      onError: () {}, 
+      onError: (String m) {}, 
       onSuccess: (String m) {
         Navigator.pushNamed(context, Routes.groups);
       },

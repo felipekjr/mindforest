@@ -13,7 +13,7 @@ class ErrorDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-      backgroundColor: AppColors.black,
+      backgroundColor: AppColors.foreground,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20.0)
       ),
@@ -35,7 +35,7 @@ class ErrorDialog extends StatelessWidget {
                 onPressed: () => Navigator.pop(context), 
                 child: Text(
                   'Cancelar', 
-                  style: TextStyles.normal(color: AppColors.comment),
+                  style: TextStyles.normalBold(color: AppColors.secondary),
                 ),
               )
             ],

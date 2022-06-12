@@ -17,7 +17,7 @@ class AppLoginResolver implements MicroApp {
 
   @override
   void registerServices() {
-    GetIt.instance.registerSingleton<LoginController>(LoginController());
+    GetIt.I.registerSingleton<LoginController>(LoginController());
   }
 
 }

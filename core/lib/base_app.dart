@@ -8,11 +8,18 @@ abstract class BaseApp {
   Map<String, WidgetBuilderArgs> get baseRoutes;
   final Map<String, WidgetBuilderArgs> routes = {};
 
-  void registerApps() {
+  void registerRoutes() {
     if (baseRoutes.isNotEmpty) routes.addAll(baseRoutes);
     if (microApps.isNotEmpty) {
       for (MicroApp microApp in microApps) {
         routes.addAll(microApp.routes);
+      }
+    }
+  }
+
+  void registerServices() {
+    if (microApps.isNotEmpty) {
+      for (MicroApp microApp in microApps) {
         microApp.registerServices();
       }
     }

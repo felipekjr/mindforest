@@ -23,7 +23,7 @@ class TextStyles {
   static TextStyle medium({Color? color}) => TextStyle(
     fontSize: 18.0,
     color: color ?? AppColors.black,
-    fontWeight: FontWeight.w500,
+    fontWeight: FontWeight.bold,
   );
   
   static TextStyle header = TextStyle(

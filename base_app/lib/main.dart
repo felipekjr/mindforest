@@ -12,27 +12,38 @@ import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  ErrorWidget.builder = (FlutterErrorDetails details) {
-    return ErrorOverlay(details: details);
-  };
+  // ErrorWidget.builder = (FlutterErrorDetails details) {
+  //   return ErrorOverlay(details: details);
+  // };
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  runApp(MindForest());
+  runApp(const MindForest());
 }
 
-class MindForest extends StatelessWidget with BaseApp {
+class MindForest extends StatefulWidget {
+  const MindForest({Key? key}) : super(key: key);
 
-  MindForest({Key? key}) : super(key: key);
+  @override
+  State<MindForest> createState() => _MindForestState();
+}
+
+class _MindForestState extends State<MindForest> with BaseApp{
+  @override
+  void initState() {
+    super.initState();
+    super.registerServices();
+  }
 
   @override
   Widget build(BuildContext context) {
-    super.registerApps();
-
+    super.registerRoutes();
     return MaterialApp(
       title: 'MindForest',
       theme: CustomTheme.data,
       navigatorKey: navigatorKey,
       onGenerateRoute: super.generateRoute,
-      initialRoute: Routes.login,
+      initialRoute: FirebaseAuth.instance.currentUser == null 
+        ? Routes.login
+        : Routes.groups
     );
   }
 

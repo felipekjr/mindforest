@@ -4,3 +4,7 @@ export './primary_button.dart';
 export './secondary_button.dart';
 export './custom_gradient.dart';
 export './input.dart';
+export './tree_icon.dart';
+export './forest_icon.dart';
+export './sick_counter.dart';
+export './healthy_counter.dart';

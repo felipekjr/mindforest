@@ -25,7 +25,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       leading: !hideLeading ? IconButton(
-        icon: Icon(Icons.close, color: AppColors.foreground),
+        icon: Icon(Icons.close, color: AppColors.black),
         onPressed: () => Navigator.of(context).pop(),
       ) : null, 
       actions: action != null ? [
@@ -33,10 +33,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       ] : [],
       bottom: tabBar,
       backgroundColor: AppColors.foreground,
-      elevation: 0,
       title: Align(
         alignment: Alignment.centerLeft,
-        child: Text(title, style: TextStyles.header),
+        child: Text(title, style: TextStyles.normal()),
       ),
     );
   }

@@ -14,7 +14,8 @@ class AppColors {
   static Color primary = const Color(0xff5DBD95);
   static Color secondary = const Color(0xff1E5176);
   static Color black = const Color(0xff282A36);
-  static Color foreground = const Color(0xffFFFFFF);
+  static Color grey = const Color(0xffBBBBBB);
+  static Color foreground = const Color(0xffF8F8F2);
   static Color currentLine = const Color(0xff525461);
   static Color red = const Color(0xffFF5555);
   static Color cyan = const Color(0xff8BE9FD);

@@ -6,7 +6,7 @@ class BasePageWidget extends StatefulWidget {
   final String? title;
   final List<Widget> children;
   final ValueNotifier<UIState> state;
-  final VoidCallback onError;
+  final Function(String) onError;
   final Function(String) onSuccess;
 
   const BasePageWidget({ 
@@ -27,7 +27,7 @@ class _BasePageWidgetState extends State<BasePageWidget> {
   void initState() {
     widget.state.addListener(() {
       final state = widget.state.value;
-      if (state is UIErrorState) widget.onError();
+      if (state is UIErrorState) widget.onError(state.description);
       if (state is UISuccessState) widget.onSuccess(state.description);
     });
     super.initState();
@@ -39,15 +39,16 @@ class _BasePageWidgetState extends State<BasePageWidget> {
       appBar: widget.title != null ? CustomAppBar(
         title: widget.title!,
       ) : null,
-      body: SingleChildScrollView(
-        child: SafeArea(
-          child: ConstrainedBox(
-            constraints: BoxConstraints(minHeight: MediaQuery.of(context).size.height * .85),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(
-                vertical: Spacing.x2,
-                horizontal: Spacing.x3
-              ),
+      body: SafeArea(
+        child: ConstrainedBox(
+          constraints: BoxConstraints(minHeight: MediaQuery.of(context).size.height * .85),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              vertical: Spacing.x2,
+              horizontal: Spacing.x3
+            ),
+            child: Directionality(
+              textDirection: TextDirection.ltr,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
