@@ -63,15 +63,6 @@ class _RegisterGroupPageState extends State<RegisterGroupPage> {
           controller.setGroupEntity(controller.groupEntity.copy(name: v)); 
         }, 
       ),
-       Input(
-        label: 'Nome', 
-        hint: 'Nome do grupo',
-        error: false, 
-        errorText: '', 
-        onChanged: (String v) {
-          controller.setGroupEntity(controller.groupEntity.copy(name: v)); 
-        }, 
-      )
     ]
   );
 }
