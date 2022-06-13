@@ -54,7 +54,12 @@ class _GroupsPageState extends State<GroupsPage> with RouteAware {
               valueListenable: controller.groupsNotifier, 
               builder: (context, groups, _) {
                 return groups == null 
-                  ? const Center(child: CircularProgressIndicator())
+                  ? Padding(
+                      padding: const EdgeInsets.only(top: Spacing.x12),
+                      child: Center(
+                        child: CircularProgressIndicator(color: AppColors.secondary,)
+                      ),
+                    )
                   : groups.isNotEmpty
                     ? groupsList(groups)
                     : const Center(child: Text('Nenhum grupo encontrado'));

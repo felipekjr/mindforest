@@ -4,17 +4,19 @@ import '../theme/theme.dart';
 class SecondaryButton extends StatelessWidget {
   final String title;
   final VoidCallback onTap;
+  final bool disabled;
 
   const SecondaryButton({
     Key? key,
     required this.title,
-    required this.onTap
+    required this.onTap,
+    this.disabled = true
    }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: onTap, 
+      onPressed: disabled ? null : onTap, 
       style: ElevatedButton.styleFrom(
         padding: EdgeInsets.zero,
         onPrimary: AppColors.black,
@@ -24,7 +26,7 @@ class SecondaryButton extends StatelessWidget {
       ),
       child: Ink(
         decoration: BoxDecoration(
-          color: AppColors.primary,
+          color: disabled ? AppColors.grey : AppColors.primary,
           borderRadius: BorderRadius.circular(50)
         ),
         child: Container(

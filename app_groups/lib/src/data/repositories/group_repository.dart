@@ -8,9 +8,12 @@ class GroupRepository {
       .where('id_usuario', isEqualTo: userId)
       .get();
     
-    return snapshot.docs.map((e) {
+    final list =  snapshot.docs.map((e) {
       return GroupEntity.fromJson(e.data()).copy(id: e.id);
     }).toList();
+
+    list.sort((a, b) => a.creationDate.isBefore(b.creationDate) ? 1 : 0);
+    return list;
   }
 
   Future<GroupEntity> save(GroupEntity entity) async {

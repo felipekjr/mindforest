@@ -9,6 +9,7 @@ import '../../data/repositories/repositories.dart';
 class RegisterGroupController extends BaseController {
   final GroupRepository repository;
   GroupEntity groupEntity = GroupEntity.empty();
+  bool isFormValid = false;
 
   RegisterGroupController({
     required this.repository
@@ -18,6 +19,7 @@ class RegisterGroupController extends BaseController {
 
   void setGroupEntity(GroupEntity entity) {
     groupEntity = entity;
+    isFormValid = groupEntity.name.isNotEmpty;
     notifyListeners();
   }
 

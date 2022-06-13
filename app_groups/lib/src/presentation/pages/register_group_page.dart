@@ -41,7 +41,11 @@ class _RegisterGroupPageState extends State<RegisterGroupPage> {
         AnimatedBuilder(
           animation: controller,
           builder: (context, _) {
-            return SecondaryButton(title: 'Salvar', onTap: controller.saveGroup);
+            return SecondaryButton(
+              title: 'Salvar', 
+              disabled: !controller.isFormValid,
+              onTap: controller.saveGroup
+            );
           }
         )
       ],
@@ -51,6 +55,15 @@ class _RegisterGroupPageState extends State<RegisterGroupPage> {
   Widget form() => Column(
     children: [
       Input(
+        label: 'Nome', 
+        hint: 'Nome do grupo',
+        error: false, 
+        errorText: '', 
+        onChanged: (String v) {
+          controller.setGroupEntity(controller.groupEntity.copy(name: v)); 
+        }, 
+      ),
+       Input(
         label: 'Nome', 
         hint: 'Nome do grupo',
         error: false, 

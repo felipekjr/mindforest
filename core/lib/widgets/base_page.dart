@@ -1,4 +1,5 @@
 import 'package:common_ui/common_ui.dart';
+import 'package:core/routes.dart';
 import 'package:flutter/material.dart';
 import '../helpers/ui_state.dart';
 
@@ -35,9 +36,11 @@ class _BasePageWidgetState extends State<BasePageWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final currRoute =  ModalRoute.of(context)?.settings.name;
     return Scaffold(
       appBar: widget.title != null ? CustomAppBar(
         title: widget.title!,
+        hideLeading: widget.title == 'Grupos'
       ) : null,
       body: SingleChildScrollView(
         child: SafeArea(
