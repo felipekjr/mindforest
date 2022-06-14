@@ -6,11 +6,6 @@ import 'package:flutter/material.dart';
 import '../../domain/entities/entities.dart';
 
 class LoginController extends BaseController {
-  
-  LoginController() {
-    state = ValueNotifier(const UIInitialState());
-  }
-
   int slideIndex = 0;
 
   List<SlideItemEntity> slides = [
@@ -49,5 +44,15 @@ class LoginController extends BaseController {
     final res = await FirebaseAuth.instance.signInWithCredential(credential);
 
     state.value = UISuccessState<UserCredential>('Login realizado com sucesso!', entity: res);
+  }
+
+  @override
+  void closeNotifiers() {
+    state.dispose();
+  }
+
+  @override
+  void init() {
+    state = ValueNotifier(const UIInitialState());
   }
 }

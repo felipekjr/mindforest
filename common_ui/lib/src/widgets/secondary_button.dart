@@ -5,12 +5,14 @@ class SecondaryButton extends StatelessWidget {
   final String title;
   final VoidCallback onTap;
   final bool disabled;
+  final Color? color;
 
   const SecondaryButton({
     Key? key,
     required this.title,
     required this.onTap,
-    this.disabled = true
+    this.disabled = false,
+    this.color
    }) : super(key: key);
 
   @override
@@ -26,7 +28,7 @@ class SecondaryButton extends StatelessWidget {
       ),
       child: Ink(
         decoration: BoxDecoration(
-          color: disabled ? AppColors.grey : AppColors.primary,
+          color: disabled ? AppColors.grey : color ?? AppColors.primary,
           borderRadius: BorderRadius.circular(50)
         ),
         child: Container(

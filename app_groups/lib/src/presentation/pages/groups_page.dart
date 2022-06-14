@@ -15,25 +15,18 @@ class GroupsPage extends StatefulWidget {
 }
 
 class _GroupsPageState extends State<GroupsPage> with RouteAware {
-  late GroupsController controller;
+  final GroupsController controller = GetIt.instance<GroupsController>();
 
   @override
   void initState() {
     super.initState();
-    controller = GetIt.instance<GroupsController>();
-    controller.getAll();
+    controller.init();
   }
 
   @override
   void dispose() {
     super.dispose();
-    controller.dispose();
-  }
-
-  @override
-  void didPop() {
-    controller.getAll();
-    super.didPop();
+    controller.closeNotifiers();
   }
 
   @override
@@ -76,7 +69,10 @@ class _GroupsPageState extends State<GroupsPage> with RouteAware {
     children: [
       const HeaderSection(title: 'Meus grupos'),
       IconButton(
-        onPressed: () => Navigator.pushNamed(context, Routes.groupRegister), 
+        onPressed: () {
+          Navigator.pushNamed(context, Routes.groupRegister)
+            .then((value) => GetIt.I<GroupsController>().getAll());
+        }, 
         icon: Icon(Icons.add, color:AppColors.black, size: 32,)
       )
     ]

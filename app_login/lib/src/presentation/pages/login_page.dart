@@ -18,6 +18,12 @@ class _LoginPageState extends State<LoginPage> {
   final controller = GetIt.instance<LoginController>();
 
   @override
+  void initState() {
+    controller.init();
+    super.initState();
+  }
+
+  @override
   void dispose() {
     controller.state.dispose();
     super.dispose();

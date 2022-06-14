@@ -13,9 +13,7 @@ class RegisterGroupController extends BaseController {
 
   RegisterGroupController({
     required this.repository
-  }) {
-    state = ValueNotifier(const UIInitialState());
-  }
+  });
 
   void setGroupEntity(GroupEntity entity) {
     groupEntity = entity;
@@ -34,4 +32,14 @@ class RegisterGroupController extends BaseController {
       state.value = const UIErrorState('Erro ao cadastrar grupo.');
     }
   } 
+
+  @override
+  void closeNotifiers() {
+    state.dispose();
+  }
+
+  @override
+  void init() {
+    state = ValueNotifier(const UIInitialState());
+  }
 }

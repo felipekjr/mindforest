@@ -16,6 +16,18 @@ class _RegisterGroupPageState extends State<RegisterGroupPage> {
   final controller = GetIt.instance<RegisterGroupController>();
 
   @override
+  void initState() {
+    super.initState();
+    controller.init();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    controller.closeNotifiers();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return BasePageWidget(
       title: 'Cadastrar grupo',

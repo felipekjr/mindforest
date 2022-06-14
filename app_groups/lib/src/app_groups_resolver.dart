@@ -13,7 +13,8 @@ class AppGroupsResolver implements MicroApp {
   @override
   Map<String, WidgetBuilderArgs> get routes => {
     name: (context, args) => const GroupsPage(),
-    Routes.groupRegister: (context, args) => const RegisterGroupPage()
+    Routes.groupRegister: (context, args) => const RegisterGroupPage(),
+    Routes.groupDetails: (context, args) => const GroupDetailsPage()
   };
 
   @override
@@ -24,6 +25,9 @@ class AppGroupsResolver implements MicroApp {
     );
     GetIt.I.registerSingleton<RegisterGroupController>(
       RegisterGroupController(repository: groupRepository)
+    );
+    GetIt.I.registerSingleton<GroupDetailsController>(
+      GroupDetailsController(repository: groupRepository)
     );
   }
 

@@ -12,9 +12,13 @@ class GroupsController extends BaseController {
 
   GroupsController({
     required this.repository
-  }) {
+  });
+
+  @override
+  void init() {
     state = ValueNotifier(const UIInitialState());
     groupsNotifier = ValueNotifier(null);
+    getAll();
   }
 
   void getAll() async {
@@ -25,5 +29,11 @@ class GroupsController extends BaseController {
     } catch (e) {
       state.value = const UIErrorState('Erro ao recuperar grupos');
     }
+  }
+
+  @override
+  void closeNotifiers() {
+    state.dispose();
+    groupsNotifier.dispose();
   }
 }

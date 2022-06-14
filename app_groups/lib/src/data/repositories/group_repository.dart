@@ -16,6 +16,22 @@ class GroupRepository {
     return list;
   }
 
+  Future<GroupEntity?> get(String id) async {
+    final snapshot = await FirebaseFirestore.instance.doc('grupos/$id').get();
+    if (snapshot.data() != null) {
+      return GroupEntity.fromJson(snapshot.data()!);
+    }
+
+    return null;
+  } 
+
+  Future<bool> delete(String id) async {
+    return FirebaseFirestore.instance.collection("grupos").doc(id).delete().then(
+      (doc) => true,
+      onError: (e) => false
+    );
+  } 
+
   Future<GroupEntity> save(GroupEntity entity) async {
     final res = await FirebaseFirestore.instance.collection('grupos')
       .add(entity.toJson());
