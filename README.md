@@ -2,6 +2,11 @@
 
 An app to map mental health for an individual or for a group
 
+---
+![](.github/docs/print1.png)
+
+---
+
 # 🏛️ Architecture
 This apps uses a MicroFrontends (multi-package) approach with Clean Arch. _They aren't silver bullets._
 
