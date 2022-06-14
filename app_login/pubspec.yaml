@@ -17,6 +17,8 @@ dependencies:
     path: ../common_deps
   common_ui:
     path: ../common_ui
+  common_user:
+    path: ../common_user
   carousel_slider: ^4.0.0
 
 dev_dependencies:

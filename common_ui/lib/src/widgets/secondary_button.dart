@@ -17,25 +17,28 @@ class SecondaryButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: disabled ? null : onTap, 
-      style: ElevatedButton.styleFrom(
-        padding: EdgeInsets.zero,
-        onPrimary: AppColors.black,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(50)
-        )
-      ),
-      child: Ink(
-        decoration: BoxDecoration(
-          color: disabled ? AppColors.grey : color ?? AppColors.primary,
-          borderRadius: BorderRadius.circular(50)
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: Spacing.x3),
+      child: ElevatedButton(
+        onPressed: disabled ? null : onTap, 
+        style: ElevatedButton.styleFrom(
+          padding: EdgeInsets.zero,
+          onPrimary: AppColors.black,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10)
+          )
         ),
-        child: Container(
-          alignment: Alignment.center,
-          child: Padding(
-            padding: const EdgeInsets.all(Spacing.x2),
-            child: Text(title, style: TextStyles.buttonText(color: Colors.white)),
+        child: Ink(
+          decoration: BoxDecoration(
+            color: disabled ? Colors.grey[400] : color ?? AppColors.primary,
+            borderRadius: BorderRadius.circular(10)
+          ),
+          child: Container(
+            alignment: Alignment.center,
+            child: Padding(
+              padding: const EdgeInsets.all(Spacing.x2),
+              child: Text(title, style: TextStyles.buttonText(color: Colors.white)),
+            ),
           ),
         ),
       ),

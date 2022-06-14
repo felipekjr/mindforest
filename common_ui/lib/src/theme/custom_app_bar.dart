@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../common_ui.dart';
 import './text_styles.dart';
 import 'app_colors.dart';
 
@@ -29,13 +30,14 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         onPressed: () => Navigator.of(context).pop(),
       ) : null, 
       actions: action != null ? [
-        action!
+        action!,
+        const SizedBox(width: Spacing.x2)
       ] : [],
       bottom: tabBar,
       backgroundColor: AppColors.foreground,
       title: Align(
         alignment: Alignment.centerLeft,
-        child: Text(title, style: TextStyles.normal()),
+        child: Text(title, style: TextStyles.normalBold()),
       ),
     );
   }

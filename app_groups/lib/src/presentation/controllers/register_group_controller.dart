@@ -27,7 +27,7 @@ class RegisterGroupController extends BaseController {
       final userId = FirebaseAuth.instance.currentUser?.uid;
       final group = groupEntity.copy(userId: userId);
       await repository.save(group);
-      state.value = const UISuccessState('Grupo cadastrado com sucesso!');
+      state.value = UISuccessState('Grupo cadastrado com sucesso!');
     } catch (e) {
       state.value = const UIErrorState('Erro ao cadastrar grupo.');
     }
@@ -40,6 +40,7 @@ class RegisterGroupController extends BaseController {
 
   @override
   void init() {
+    isFormValid = false;
     state = ValueNotifier(const UIInitialState());
   }
 }

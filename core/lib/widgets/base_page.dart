@@ -1,5 +1,6 @@
+import 'package:common_deps/common_deps.dart';
 import 'package:common_ui/common_ui.dart';
-import 'package:core/routes.dart';
+import 'package:common_user/common_user.dart';
 import 'package:flutter/material.dart';
 import '../helpers/ui_state.dart';
 
@@ -36,11 +37,14 @@ class _BasePageWidgetState extends State<BasePageWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final currRoute =  ModalRoute.of(context)?.settings.name;
+    final currRoute =  widget.title == 'Grupos';
     return Scaffold(
       appBar: widget.title != null ? CustomAppBar(
         title: widget.title!,
-        hideLeading: widget.title == 'Grupos'
+        hideLeading: currRoute,
+        action: currRoute ? GestureDetector(onTap: () {
+          GetIt.I<UserSessionService>().signOut();
+        }, child: Icon(Icons.exit_to_app, size: 24, color: AppColors.black,),) : null,
       ) : null,
       body: SingleChildScrollView(
         child: SafeArea(

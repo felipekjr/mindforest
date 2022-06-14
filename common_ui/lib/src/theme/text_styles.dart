@@ -4,7 +4,7 @@ import 'app_colors.dart';
 class TextStyles {
   static TextStyle title({Color? color}) => TextStyle(
     fontSize: 28.0,
-    color: color ?? AppColors.black,
+    color: color ?? AppColors.secondary,
     fontWeight: FontWeight.bold,
   );
 

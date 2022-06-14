@@ -55,12 +55,19 @@ class _GroupsPageState extends State<GroupsPage> with RouteAware {
                     )
                   : groups.isNotEmpty
                     ? groupsList(groups)
-                    : const Center(child: Text('Nenhum grupo encontrado'));
+                    : emptyMessage();
               }
             )
           ],
         ),
       ],
+    );
+  }
+
+  Padding emptyMessage() {
+    return const Padding(
+      padding: EdgeInsets.only(top: Spacing.x3),
+      child: Center(child: Text('Nenhum grupo encontrado')),
     );
   }
 

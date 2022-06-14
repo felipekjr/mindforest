@@ -11,3 +11,4 @@ export 'package:google_sign_in/google_sign_in.dart';
 export 'package:font_awesome_flutter/font_awesome_flutter.dart';
 export 'package:get_it/get_it.dart';
 export 'package:intl/intl.dart';
+export 'package:lottie/lottie.dart';

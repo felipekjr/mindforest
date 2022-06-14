@@ -20,6 +20,8 @@ dependencies:
     path: ../common_deps
   common_ui:
     path: ../common_ui
+  common_user:
+    path: ../common_user
   app_chat:
     path: ../app_chat
   app_groups:

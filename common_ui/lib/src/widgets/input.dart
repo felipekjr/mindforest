@@ -9,6 +9,7 @@ class Input extends StatelessWidget {
   final bool error;
   final bool obscure;
   final Function(String) onChanged;
+  final String? initialValue;
 
   const Input({
     Key? key, 
@@ -17,12 +18,14 @@ class Input extends StatelessWidget {
     required this.errorText, 
     required this.error, 
     required this.onChanged,
-    this.obscure = false
+    this.obscure = false,
+    this.initialValue
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
+      initialValue: initialValue ?? '',
       style: TextStyles.normalThin(),
       obscureText: obscure,
       decoration:InputDecoration(

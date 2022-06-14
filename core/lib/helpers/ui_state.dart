@@ -36,8 +36,10 @@ class UIErrorState extends UIState {
 
 class UISuccessState<T> extends UIState {
   final T? entity;
-  const UISuccessState(String description, {this.entity}) : super(description);
+  bool shouldNavigate;
+
+  UISuccessState(String description, {this.entity, this.shouldNavigate = true}) : super(description);
 
   @override
-  List<Object> get props => [description];
+  List<Object> get props => [description, shouldNavigate];
 }

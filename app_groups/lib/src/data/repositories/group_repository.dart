@@ -32,6 +32,14 @@ class GroupRepository {
     );
   } 
 
+  Future<bool> update(GroupEntity groupEntity) async {
+    return FirebaseFirestore.instance.collection("grupos").doc(groupEntity.id)
+      .update(groupEntity.toJson()).then(
+        (doc) => true,
+        onError: (e) => false
+      );
+  } 
+
   Future<GroupEntity> save(GroupEntity entity) async {
     final res = await FirebaseFirestore.instance.collection('grupos')
       .add(entity.toJson());
