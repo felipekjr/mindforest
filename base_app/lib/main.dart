@@ -57,7 +57,7 @@ class _MindForestState extends State<MindForest> with BaseApp{
       theme: CustomTheme.data,
       navigatorKey: navigatorKey,
       onGenerateRoute: super.generateRoute,
-      initialRoute: user == null 
+      initialRoute: FirebaseAuth.instance.currentUser == null
         ? Routes.login
         : Routes.groups
     );

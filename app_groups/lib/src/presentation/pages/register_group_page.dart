@@ -53,7 +53,7 @@ class _RegisterGroupPageState extends State<RegisterGroupPage> {
         AnimatedBuilder(
           animation: controller,
           builder: (context, _) {
-            return SecondaryButton(
+            return PrimaryButton(
               title: 'Salvar', 
               disabled: !controller.isFormValid,
               onTap: controller.saveGroup

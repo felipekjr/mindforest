@@ -4,6 +4,7 @@ import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
 import '../controllers/controllers.dart';
+import '../widgets/widgets.dart';
 
 class GroupDetailsPage extends StatefulHookWidget {
   const GroupDetailsPage({Key? key}) : super(key: key);
@@ -12,12 +13,21 @@ class GroupDetailsPage extends StatefulHookWidget {
   State<GroupDetailsPage> createState() => _GroupDetailsPageState();
 }
 
-class _GroupDetailsPageState extends State<GroupDetailsPage> {
+class _GroupDetailsPageState extends State<GroupDetailsPage>  with SingleTickerProviderStateMixin {
   final controller = GetIt.instance<GroupDetailsController>();
+  late final AnimationController animationController;
+  late final animationCounter;
 
   @override
   void initState() {
     controller.init();
+    animationController = AnimationController(duration: const Duration(seconds: 1), vsync: this);
+    animationCounter = Tween<double>(
+      begin: 0,
+      end: controller.currentGroup.totalScore.toDouble()
+    ).animate(CurvedAnimation(parent: animationController, curve: Curves.bounceInOut));
+
+    animationController.forward();
     super.initState();
   }
 
@@ -37,6 +47,15 @@ class _GroupDetailsPageState extends State<GroupDetailsPage> {
     }
   }
 
+  Color _getScoreColor(double value) {
+    if (value <= 30) {
+      return AppColors.grey;
+    } else if (value > 30 && value <= 60) {
+      return AppColors.secondary;
+    }
+    return AppColors.primary;
+  }
+
   @override
   Widget build(BuildContext context) {
     return BasePageWidget(
@@ -45,78 +64,60 @@ class _GroupDetailsPageState extends State<GroupDetailsPage> {
       onSuccess: (String message) => onSuccess(context, controller.state.value as UISuccessState) ,
       state: controller.state,
       children: [
-        Column(
-          children: [
-            const SizedBox(height: Spacing.x2),
-            editableTitleRow(),
-            const SizedBox(height: Spacing.x2),
-            Column(children: [
-              Row()
-            ],)
-          ],
+        editableTitleRow(),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: Spacing.x4),
+          child: ShadowedContainer(
+            child: Center(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const SizedBox(height: Spacing.x2),
+                  Text('Pontuação média', style: TextStyles.normalThin()),
+                  const SizedBox(height: Spacing.x2),
+                  animatedCounter(),
+                  Center(
+                    child: Lottie.asset(
+                      'assets/animated_tree.json', 
+                      package: 'common_ui',
+                      height: 130
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
         ),
-        AnimatedBuilder(
-          animation: controller,
-          builder: (context, _) {
-            return SecondaryButton(
-              title: 'Apagar',
-              color: AppColors.red,
-              onTap: controller.delete,
-            );
-          })
+        deleteButton()
       ],
     );
   }
+
+  AnimatedBuilder animatedCounter() => AnimatedBuilder(
+    animation: animationController,
+    builder: (context, _) {
+      final value = animationCounter.value as double;
+      return Text(
+        value.toStringAsFixed(1),
+        style: TextStyles.titleLarge(color: _getScoreColor(value)),
+      );
+    }
+  );
+
+  AnimatedBuilder deleteButton() => AnimatedBuilder(
+    animation: controller,
+    builder: (context, _) => SecondaryButton(
+      title: 'Apagar',
+      color: AppColors.red,
+      onTap: controller.delete,
+    )
+  );
 
   Widget editableTitleRow() {
     return AnimatedBuilder(
       animation: controller,
       builder: (context, _) {
-        return Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            !controller.isEditing 
-              ? Text(
-                  controller.currentGroup.name,
-                  style: TextStyles.title(),
-                ) 
-              : Expanded(
-                child: Input(
-                  label: 'Nome', 
-                  hint: 'Nome do grupo', 
-                  errorText: '', 
-                  error: false, 
-                  initialValue: controller.currentGroup.name,
-                  onChanged: (String v) => controller.setGroup(controller.currentGroup.copy(name: v))
-                ),
-              ),
-           
-            IconButton(
-              padding: EdgeInsets.all(0),
-              onPressed: () {
-                if (controller.isEditing) {
-                  controller.saveChanges();
-                } else {
-                  controller.setIsEditing(!controller.isEditing);
-                }
-              },
-              splashRadius: 16,
-              icon: AnimatedSwitcher(
-                duration: const Duration(milliseconds: 300),
-                transitionBuilder: (child, animation) => RotationTransition(
-                  turns: child.key == const Key('icon1')
-                    ? Tween<double>(begin: 1, end: 0).animate(animation)
-                    : Tween<double>(begin: 0, end: 1).animate(animation),
-                  child: FadeTransition(opacity: animation, child: child),
-                ),
-                child: controller.isEditing
-                  ? const FaIcon(FontAwesomeIcons.check, key: Key('icon1'), color: Colors.green)
-                  : FaIcon(FontAwesomeIcons.pencil, key: const Key('icon2'), size: 16, color: AppColors.black)
-                ),
-              )
-          ],
-        );
+        return EditableTitleRow(controller: controller);
       }
     );
   }

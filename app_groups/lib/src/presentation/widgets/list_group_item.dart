@@ -1,4 +1,5 @@
 import 'package:app_groups/src/presentation/controllers/controllers.dart';
+import 'package:app_groups/src/presentation/widgets/widgets.dart';
 import 'package:common_deps/common_deps.dart';
 import 'package:common_ui/common_ui.dart';
 import 'package:core/extensions/datetime_extension.dart';
@@ -23,32 +24,14 @@ class GroupListItem extends StatelessWidget {
         Navigator.pushNamed(context, Routes.groupDetails)
           .then((value) => GetIt.I<GroupsController>().getAll());
       },
-      child: Container(
-        padding: const EdgeInsets.all(Spacing.x2),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(10),
-              topRight: Radius.circular(10),
-              bottomLeft: Radius.circular(10),
-              bottomRight: Radius.circular(10)
-          ),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.1),
-              spreadRadius: 2,
-              blurRadius: 7,
-              offset: const Offset(0, 1), // changes position of shadow
-            ),
-          ],
-        ),
+      child: ShadowedContainer(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(group.name, style: TextStyles.medium(color: AppColors.primary),),
+                Text(group.name, style: TextStyles.medium(color: group.isActive ? AppColors.primary : AppColors.grey),),
                 const SizedBox(height: Spacing.x1),
                 Text('${group.participants.length} Participantes', style: TextStyles.small(color:AppColors.grey)),
               ],
@@ -61,7 +44,7 @@ class GroupListItem extends StatelessWidget {
               ],
             ),
           ],
-        )
+        ),
       ),
     );
   }

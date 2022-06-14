@@ -2,9 +2,14 @@ import 'package:flutter/widgets.dart';
 import 'app_colors.dart';
 
 class TextStyles {
+  static TextStyle titleLarge({Color? color}) => TextStyle(
+    fontSize: 54.0,
+    color: color ?? AppColors.primary,
+    fontWeight: FontWeight.bold,
+  );
   static TextStyle title({Color? color}) => TextStyle(
     fontSize: 28.0,
-    color: color ?? AppColors.secondary,
+    color: color ?? AppColors.black,
     fontWeight: FontWeight.bold,
   );
 

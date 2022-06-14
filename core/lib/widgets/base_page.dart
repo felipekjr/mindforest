@@ -1,8 +1,9 @@
-import 'package:common_deps/common_deps.dart';
+import 'package:common_deps/common_deps.dart' as cd;
 import 'package:common_ui/common_ui.dart';
 import 'package:common_user/common_user.dart';
 import 'package:flutter/material.dart';
 import '../helpers/ui_state.dart';
+import '../routes.dart';
 
 class BasePageWidget extends StatefulWidget {
   final String? title;
@@ -43,7 +44,7 @@ class _BasePageWidgetState extends State<BasePageWidget> {
         title: widget.title!,
         hideLeading: currRoute,
         action: currRoute ? GestureDetector(onTap: () {
-          GetIt.I<UserSessionService>().signOut();
+          cd.GetIt.I<UserSessionService>().signOut().then((value) => Navigator.pushReplacementNamed(context, Routes.login));
         }, child: Icon(Icons.exit_to_app, size: 24, color: AppColors.black,),) : null,
       ) : null,
       body: SingleChildScrollView(
@@ -55,13 +56,10 @@ class _BasePageWidgetState extends State<BasePageWidget> {
                 vertical: Spacing.x2,
                 horizontal: Spacing.x3
               ),
-              child: Directionality(
-                textDirection: TextDirection.ltr,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: widget.children
-                ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: widget.children
               ),
             ),
           ),
