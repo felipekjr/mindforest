@@ -1,10 +1,9 @@
 
 import 'package:app_groups/src/domain/entities/group_entity.dart';
-import 'package:common_deps/common_deps.dart';
 import 'package:core/helpers/helpers.dart';
 import 'package:flutter/material.dart';
 
-import '../../data/repositories/repositories.dart';
+import '../data/repositories/group_repository.dart';
 
 class GroupDetailsController extends BaseController {
   final GroupRepository repository;

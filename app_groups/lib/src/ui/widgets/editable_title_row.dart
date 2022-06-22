@@ -2,7 +2,7 @@ import 'package:common_deps/common_deps.dart';
 import 'package:common_ui/common_ui.dart';
 import 'package:flutter/material.dart';
 
-import '../controllers/controllers.dart';
+import '../../controllers/controllers.dart';
 
 class EditableTitleRow extends StatelessWidget {
   const EditableTitleRow({

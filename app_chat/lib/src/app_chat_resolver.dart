@@ -4,11 +4,16 @@ import 'package:flutter/material.dart';
 
 class AppChatResolver implements MicroApp {
   @override
-  String get name => 'bills';
+  String get name => 'chat';
 
   @override
   Map<String, WidgetBuilderArgs> get routes => {
-    '/$name/status': (context, args) => const MaterialApp()
+    name: (context, args) => const MaterialApp()
   };
+
+  @override
+  void registerServices() {
+    // TODO: implement registerServices
+  }
 
 }

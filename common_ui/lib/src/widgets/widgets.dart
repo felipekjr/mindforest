@@ -9,3 +9,4 @@ export './forest_icon.dart';
 export './sick_counter.dart';
 export './healthy_counter.dart';
 export './header_section.dart';
+export './shadowed_container.dart';

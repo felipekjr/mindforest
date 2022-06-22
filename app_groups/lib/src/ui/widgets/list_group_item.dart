@@ -1,11 +1,9 @@
-import 'package:app_groups/src/presentation/controllers/controllers.dart';
-import 'package:app_groups/src/presentation/widgets/widgets.dart';
 import 'package:common_deps/common_deps.dart';
 import 'package:common_ui/common_ui.dart';
-import 'package:core/extensions/datetime_extension.dart';
 import 'package:core/routes.dart';
 import 'package:flutter/material.dart';
 
+import '../../controllers/controllers.dart';
 import '../../domain/entities/entities.dart';
 
 class GroupListItem extends StatelessWidget {

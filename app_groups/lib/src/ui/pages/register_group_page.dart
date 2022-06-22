@@ -3,7 +3,7 @@ import 'package:common_ui/common_ui.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
-import '../controllers/controllers.dart';
+import '../../controllers/controllers.dart';
 
 class RegisterGroupPage extends StatefulWidget {
   const RegisterGroupPage({ Key? key }) : super(key: key);

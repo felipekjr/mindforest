@@ -3,7 +3,7 @@ import 'package:common_ui/common_ui.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
-import '../controllers/controllers.dart';
+import '../../controllers/controllers.dart';
 import '../widgets/widgets.dart';
 
 class GroupDetailsPage extends StatefulHookWidget {

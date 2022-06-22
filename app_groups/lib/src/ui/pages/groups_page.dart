@@ -3,8 +3,8 @@ import 'package:common_ui/common_ui.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
+import '../../controllers/controllers.dart';
 import '../../domain/entities/entities.dart';
-import '../controllers/controllers.dart';
 import '../widgets/widgets.dart';
 
 class GroupsPage extends StatefulWidget {
@@ -78,7 +78,7 @@ class _GroupsPageState extends State<GroupsPage> with RouteAware {
       IconButton(
         onPressed: () {
           Navigator.pushNamed(context, Routes.groupRegister)
-            .then((value) => GetIt.I<GroupsController>().getAll());
+            .then((value) => controller.getAll());
         }, 
         icon: Icon(Icons.add, color:AppColors.black, size: 32,)
       )
