@@ -1,13 +1,18 @@
-import 'package:common_deps/common_deps.dart';
 import 'package:core/core.dart';
+import 'package:flutter/material.dart';
 
-final homeProvider = StateNotifierProvider<HomeController, UIState>((ref) {
-  return HomeController();
-});
 
-class HomeController extends StateNotifier<UIState> {
-  HomeController() : super(const UIInitialState());
+class HomeController extends BaseController {
+  HomeController() : super();
   
+  @override
+  void init() {
+    state = ValueNotifier(const UIInitialState());
+  } 
 
-  setState(UIState newState) => state = newState; 
+  @override
+  void closeNotifiers() {
+    state.dispose();
+  }
+
 }

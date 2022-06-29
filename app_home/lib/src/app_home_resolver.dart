@@ -11,7 +11,7 @@ class AppHomeResolver implements MicroApp {
 
   @override
   void registerServices() {
-    GetIt.I.registerSingleton<StateNotifierProvider>(homeProvider);
+    GetIt.I.registerSingleton<HomeController>(HomeController());
   }
 
   @override

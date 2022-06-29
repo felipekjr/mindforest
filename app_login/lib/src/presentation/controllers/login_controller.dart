@@ -33,9 +33,14 @@ class LoginController extends BaseController {
   }
 
   Future<void> signInWithGoogle() async {
-    state.value = const UILoadingState();
-    final res = await  GetIt.I<UserSessionService>().signIn();
-    state.value = UISuccessState<UserCredential>('Login realizado com sucesso!', entity: res);
+    try {
+      state.value = const UILoadingState();
+      final res = await  GetIt.I<UserSessionService>().signIn();
+      state.value = UISuccessState<UserCredential>('Login realizado com sucesso!', entity: res);
+    } catch (e) {
+      state.value = const UIErrorState('Não foi possível realizar o login. Verifique seu login e senha.');
+    }
+
   }
 
   @override

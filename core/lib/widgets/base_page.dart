@@ -38,7 +38,7 @@ class _BasePageWidgetState extends State<BasePageWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final currRoute =  widget.title == 'Grupos';
+    final currRoute =  widget.title == 'Início';
     return Scaffold(
       appBar: widget.title != null ? CustomAppBar(
         title: widget.title!,

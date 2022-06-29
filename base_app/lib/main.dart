@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:app_groups/app_groups.dart';
+import 'package:app_home/app_home.dart';
 import 'package:app_login/app_login.dart';
 import 'package:common_deps/common_deps.dart';
 import 'package:common_ui/common_ui.dart';
@@ -15,9 +16,9 @@ import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // ErrorWidget.builder = (FlutterErrorDetails details) {
-  //   return ErrorOverlay(details: details);
-  // };
+  ErrorWidget.builder = (FlutterErrorDetails details) {
+    return ErrorOverlay(details: details);
+  };
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MindForest());
 }
@@ -75,6 +76,7 @@ class _MindForestState extends State<MindForest> with BaseApp{
   @override
   List<MicroApp> get microApps => [
     AppLoginResolver(),
+    AppHomeResolver(),
     AppGroupsResolver()
   ];
 }

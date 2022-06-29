@@ -30,7 +30,7 @@ class ErrorDialog extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text('Atenção!', style: TextStyles.sectionTitle()),
-              Text(message, style: TextStyles.normalThin()),
+              Text(message, style: TextStyles.normalThin(), textAlign: TextAlign.center),
               TextButton(
                 onPressed: () => Navigator.pop(context), 
                 child: Text(

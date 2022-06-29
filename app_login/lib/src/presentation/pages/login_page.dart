@@ -33,9 +33,11 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return BasePageWidget(
       state: controller.state, 
-      onError: (String m) {}, 
+      onError: (String m) {
+        showDialog(context: context, builder: (context) => ErrorDialog(message: m));
+      }, 
       onSuccess: (String m) {
-        Navigator.pushNamed(context, Routes.groups);
+        Navigator.pushNamed(context, Routes.home);
       },
       children: [
         Center(child: Image.asset('assets/logo.png', width: 100, height: 100,)),

@@ -24,6 +24,8 @@ dependencies:
     path: ../common_user
   app_chat:
     path: ../app_chat
+  app_home:
+    path: ../app_home
   app_groups:
     path: ../app_groups
   app_login:
