@@ -13,6 +13,10 @@ dependencies:
     sdk: flutter
   core:
     path: ../core
+  common_ui:
+    path: ../common_ui
+  common_deps:
+    path: ../common_deps
 
 dev_dependencies:
   flutter_test:

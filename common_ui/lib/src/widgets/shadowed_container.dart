@@ -23,10 +23,10 @@ class ShadowedContainer extends StatelessWidget {
           ),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.1),
-              spreadRadius: 1,
-              blurRadius: 3,
-              offset: const Offset(0, 1), // changes position of shadow
+              color: AppColors.comment.withOpacity(0.2),
+              spreadRadius: 3,
+              blurRadius: 5,
+              offset: const Offset(0, 3), // changes position of shadow
             ),
           ],
         ),

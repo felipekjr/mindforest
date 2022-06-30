@@ -1,1 +1,1 @@
-export './expense_entity.dart';
+export './message_entity.dart';

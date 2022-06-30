@@ -11,6 +11,8 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_spinkit: ^5.1.0
+  common_deps:
+    path: ../common_deps
 
 dev_dependencies:
   flutter_test:

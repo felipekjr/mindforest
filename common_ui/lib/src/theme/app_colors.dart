@@ -10,7 +10,7 @@ class AppColors {
     ],
   );
 
-
+  
   static Color primary = const Color(0xff5DBD95);
   static Color secondary = const Color(0xffB8A981);
   static Color black = const Color(0xff282A36);
@@ -23,4 +23,7 @@ class AppColors {
   static Color purple = Color.fromARGB(255, 163, 127, 215);
   static Color pink = const Color(0xffff79c6);
   static Color comment = const Color(0xff6272a4);
+  static Color white = const Color(0xffffffff);
+    static Color lightGreen = Color.fromARGB(255, 237, 255, 247);
+
 }

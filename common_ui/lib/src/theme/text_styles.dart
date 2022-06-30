@@ -1,17 +1,19 @@
+import 'package:common_deps/common_deps.dart';
 import 'package:flutter/widgets.dart';
 import 'app_colors.dart';
 
 class TextStyles {
-  static TextStyle titleLarge({Color? color}) => TextStyle(
+  static TextStyle titleLarge({Color? color}) => GoogleFonts.kalam(textStyle: TextStyle(
     fontSize: 54.0,
     color: color ?? AppColors.primary,
     fontWeight: FontWeight.bold,
-  );
-  static TextStyle title({Color? color}) => TextStyle(
+  ));
+
+  static TextStyle title({Color? color}) => GoogleFonts.kalam(textStyle: TextStyle(
     fontSize: 28.0,
     color: color ?? AppColors.black,
     fontWeight: FontWeight.bold,
-  );
+  ));
 
   static TextStyle normal({Color? color}) => TextStyle(
     fontSize: 16.0,
@@ -67,9 +69,9 @@ class TextStyles {
     fontWeight: FontWeight.bold,
   );
 
-  static TextStyle sectionTitle({Color? color}) =>TextStyle(
+  static TextStyle sectionTitle({Color? color}) =>  GoogleFonts.kalam(textStyle:TextStyle(
     fontSize: 20.0,
     color: color ?? AppColors.black,
     fontWeight: FontWeight.bold,
-  );
+  ));
 }

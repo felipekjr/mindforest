@@ -8,6 +8,7 @@ import '../routes.dart';
 class BasePageWidget extends StatefulWidget {
   final String? title;
   final List<Widget> children;
+  final Widget? actionButton;
   final ValueNotifier<UIState> state;
   final Function(String) onError;
   final Function(String) onSuccess;
@@ -15,6 +16,7 @@ class BasePageWidget extends StatefulWidget {
   const BasePageWidget({ 
     Key? key,
     this.title,
+    this.actionButton,
     required this.children,
     required this.state,
     required this.onError,
@@ -47,6 +49,7 @@ class _BasePageWidgetState extends State<BasePageWidget> {
           cd.GetIt.I<UserSessionService>().signOut().then((value) => Navigator.pushReplacementNamed(context, Routes.login));
         }, child: Icon(Icons.exit_to_app, size: 24, color: AppColors.black,),) : null,
       ) : null,
+      floatingActionButton: widget.actionButton,
       body: SingleChildScrollView(
         child: SafeArea(
           child: ConstrainedBox(

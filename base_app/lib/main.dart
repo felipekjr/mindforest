@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:app_chat/app_chat.dart';
 import 'package:app_groups/app_groups.dart';
 import 'package:app_home/app_home.dart';
 import 'package:app_login/app_login.dart';
@@ -77,6 +78,7 @@ class _MindForestState extends State<MindForest> with BaseApp{
   List<MicroApp> get microApps => [
     AppLoginResolver(),
     AppHomeResolver(),
-    AppGroupsResolver()
+    AppGroupsResolver(),
+    AppChatResolver()
   ];
 }

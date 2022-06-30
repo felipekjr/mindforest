@@ -9,6 +9,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final bool hideLeading;
   final TabBar? tabBar;
   final String title;
+  final Color? color;
 
   const CustomAppBar({
     Key? key,
@@ -17,6 +18,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.height,
     this.hideLeading = false,
     this.action,
+    this.color
   }) : super(key: key);
 
   @override
@@ -34,7 +36,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         const SizedBox(width: Spacing.x2)
       ] : [],
       bottom: tabBar,
-      backgroundColor: AppColors.foreground,
+      automaticallyImplyLeading: false,
+      elevation: 0,
+      backgroundColor: color ?? AppColors.foreground,
       title: Align(
         alignment: Alignment.centerLeft,
         child: Text(title, style: TextStyles.normalBold()),
