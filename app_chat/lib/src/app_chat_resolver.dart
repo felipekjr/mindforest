@@ -1,4 +1,5 @@
 import 'package:common_deps/common_deps.dart';
+import 'package:common_user/common_user.dart';
 import 'package:core/micro_app.dart';
 import 'package:core/micro_core_utils.dart';
 
@@ -16,7 +17,8 @@ class AppChatResolver implements MicroApp {
 
   @override
   void registerServices() {
-    GetIt.I.registerSingleton(ChatController());
+    final userSessionService = GetIt.I.get<UserSessionService>();
+    GetIt.I.registerSingleton(ChatController(userSessionService: userSessionService));
   }
 
 }

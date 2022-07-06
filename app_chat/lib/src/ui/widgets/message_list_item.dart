@@ -5,8 +5,9 @@ import '../../domain/entities/entities.dart';
 
 class MessageListItem extends StatelessWidget {
   final MessageEntity chatMessage;
+  final bool loading;
 
-  const MessageListItem({required this.chatMessage});
+  const MessageListItem({Key? key, required this.chatMessage, this.loading = false}) : super (key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +18,7 @@ class MessageListItem extends StatelessWidget {
 
   Widget _showSentMessage() {
     return Padding(
-      padding: const EdgeInsets.only(top: Spacing.x2),
+      padding: const EdgeInsets.only(top: Spacing.x1),
       child: ListTile(
         contentPadding:
             const EdgeInsets.fromLTRB(Spacing.x6, 0.0, Spacing.x1, 0.0),
@@ -36,7 +37,7 @@ class MessageListItem extends StatelessWidget {
 
   Widget _showReceivedMessage() {
     return Padding(
-      padding: const EdgeInsets.only(top: Spacing.x2),
+      padding: const EdgeInsets.only(top: Spacing.x1),
       child: ListTile(
         contentPadding:
             const EdgeInsets.fromLTRB(Spacing.x1, 0.0, Spacing.x6, 0.0),
@@ -54,8 +55,21 @@ class MessageListItem extends StatelessWidget {
           ),
         ),
         title: Text(chatMessage.name, textAlign: TextAlign.left),
-        subtitle: Text(chatMessage.text, textAlign: TextAlign.left),
+        subtitle: loading ? loadBubble() : Text(chatMessage.text, textAlign: TextAlign.left),
       ),
     );
   }
+
+  Widget loadBubble() => Padding(
+    padding: const EdgeInsets.only(right: Spacing.x12 * 2),
+    child: Container(
+      height: 30,
+      padding: const EdgeInsets.all(Spacing.x1),
+      decoration: BoxDecoration(
+        color: Colors.grey[300],
+        borderRadius: BorderRadius.circular(50)
+      ),
+      child: CustomSpinner(color: AppColors.black,)
+    ),
+  );
 }

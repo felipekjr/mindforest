@@ -67,7 +67,7 @@ class _MindForestState extends State<MindForest> with BaseApp{
   
   @override
   void registerServices() {
-    GetIt.I.registerSingleton<UserSessionService>(UserSessionService());
+    GetIt.I.registerSingleton<UserSessionService>(UserSessionServiceImpl());
     super.registerServices();
   }
 

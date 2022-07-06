@@ -70,7 +70,8 @@ class _HomePageState extends State<HomePage> {
         ),
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          gradient: AppColors.gradient,
+          color: AppColors.primary,
+          // gradient: AppColors.gradient,
         ),
       ),
     );

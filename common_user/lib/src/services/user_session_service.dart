@@ -1,7 +1,11 @@
 import 'package:common_deps/common_deps.dart';
-import 'package:common_user/src/entities/user_entity.dart';
+abstract class UserSessionService {
+  User? currentUser;
+  Future<UserCredential> signIn();
+  Future<void> signOut();
+}
 
-class UserSessionService {
+class UserSessionServiceImpl implements UserSessionService {
   User? currentUser;
 
   Future<UserCredential> signIn() async {

@@ -17,6 +17,8 @@ dependencies:
     path: ../common_ui
   common_deps:
     path: ../common_deps
+  common_user:
+    path: ../common_user
 
 dev_dependencies:
   flutter_test:

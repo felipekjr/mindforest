@@ -1,8 +1,11 @@
+import 'package:app_chat/src/domain/helpers/helpers.dart';
 import 'package:common_deps/common_deps.dart';
 import 'package:common_ui/common_ui.dart';
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
 import '../../controllers/controllers.dart';
+import '../../controllers/states/states.dart';
 import '../widgets/widgets.dart';
 
 class ChatPage extends StatefulWidget {
@@ -23,51 +26,77 @@ class _ChatPageState extends State<ChatPage> {
 
   @override
   void dispose() {
-    controller.dispose();
+    controller.closeNotifiers();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.grey[100],
-        appBar: CustomAppBar(
-          title: 'Chat',
-          color: AppColors.primary,
-        ),
-        body: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              _buildList(),
-              Divider(
-                height: 1.0,
-                color: AppColors.grey,
-              ),
-              
-              actions(),
-              const SizedBox(
-                height: Spacing.x3,
-              ),
-            ]));
-  }
-
-  Widget button() => Padding(
-    padding: const EdgeInsets.symmetric(horizontal: Spacing.x6),
-    child: PrimaryButton(title: 'Enviar', onTap: () {}),
-  );
-
-  Widget _buildList() {
-    return Flexible(
-      child: ListView.builder(
-        padding: const EdgeInsets.all(8.0),
-        itemBuilder: (_, int index) =>
-            MessageListItem(chatMessage: controller.messages[index]),
-        itemCount: controller.messages.length,
+      backgroundColor: Colors.grey[100],
+      appBar: CustomAppBar(
+        title: 'Chat',
+        color: AppColors.primary,
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          messages(),
+          actionSection(),
+          const SizedBox(height: Spacing.x3),
+        ],
       ),
     );
   }
 
-  Widget actions() {
+  ValueListenableBuilder<UIState> actionSection() {
+    return ValueListenableBuilder<UIState>(
+      valueListenable: controller.state,
+      builder: (context, state, _) {
+        if (state is LoadingMessageState || state is UIInitialState) {
+          return actions(state is LoadingMessageState);
+        }
+        return button();
+      },
+    );
+  }
+
+  Widget button() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: Spacing.x3),
+      child: PrimaryButton(
+        title: 'Regar',
+        onTap: controller.sendForm,
+      ),
+    );
+  }
+
+  Widget messages() {
+    return Flexible(
+      child: AnimatedBuilder(
+        animation: controller,
+        builder: (
+          context,
+          _
+        ) {
+          return ListView.builder(
+            controller: controller.messagesScrollController,
+            padding: const EdgeInsets.all(8.0),
+            itemBuilder: (_, int index) {
+              return MessageListItem(
+                key: Key('message_$index'),
+                chatMessage: controller.messages[index],
+                loading: controller.state.value is LoadingMessageState && index == controller.messages.length - 1,
+              );
+            },
+            itemCount: controller.messages.length,
+          );
+        },
+      ),
+    );
+  }
+
+  Widget actions(bool disabled) {
     return Container(
       padding: const EdgeInsets.symmetric(
           vertical: Spacing.x1, horizontal: Spacing.x3),
@@ -86,10 +115,34 @@ class _ChatPageState extends State<ChatPage> {
       child: Wrap(
         spacing: Spacing.x3,
         children: [
-          EmojiButton('assets/downface.png', onTap: () {}),
-          EmojiButton('assets/confused.png', onTap: () {}),
-          EmojiButton('assets/neutral.png', onTap: () {}),
-          EmojiButton('assets/happy.png', onTap: () {}),
+          EmojiButton(
+            'assets/happy.png',
+            onTap: () {
+              controller.reply(AnswerValues.never);
+            },
+            disabled: disabled,
+          ),
+          EmojiButton(
+            'assets/neutral.png',
+            onTap: () {
+              controller.reply(AnswerValues.someDays);
+            },
+            disabled: disabled,
+          ),
+          EmojiButton(
+            'assets/confused.png',
+            onTap: () {
+              controller.reply(AnswerValues.severalDays);
+            },
+            disabled: disabled,
+          ),
+          EmojiButton(
+            'assets/downface.png',
+            onTap: () {
+              controller.reply(AnswerValues.almostEveryday);
+            },
+            disabled: disabled,
+          ),
         ],
       ),
     );
@@ -99,20 +152,22 @@ class _ChatPageState extends State<ChatPage> {
 class EmojiButton extends StatelessWidget {
   final String path;
   final VoidCallback onTap;
+  final bool disabled;
 
-  const EmojiButton(this.path, {required this.onTap});
+  const EmojiButton(this.path, {required this.onTap, this.disabled = false});
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Image.asset(
-        path,
-        width: 50,
-        height: 50,
+    return Opacity(
+      opacity: disabled ? .5 : 1,
+      child: InkWell(
+        onTap: disabled ? null : onTap,
+        child: Image.asset(
+          path,
+          width: 50,
+          height: 50,
+        ),
       ),
     );
   }
 }
-
-
