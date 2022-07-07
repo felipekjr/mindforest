@@ -1,9 +1,8 @@
-import 'package:app_chat/src/domain/entities/answer_entity.dart';
 import 'package:app_chat/src/domain/entities/entities.dart';
 import 'package:common_deps/common_deps.dart';
+import 'package:common_quiz/common_quiz.dart';
 import 'package:common_user/common_user.dart';
 import 'package:core/core.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 
 import '../domain/helpers/helpers.dart';
@@ -12,10 +11,9 @@ import 'states/states.dart';
 
 class ChatController extends BaseController with MessagesMixin {
   final UserSessionService userSessionService;
-  
-  ChatController({
-    required this.userSessionService
-  });
+  final SaveQuiz saveQuiz;
+
+  ChatController({required this.userSessionService, required this.saveQuiz});
 
   List<AnswerEntity> answers = [];
 
@@ -27,7 +25,7 @@ class ChatController extends BaseController with MessagesMixin {
   void init() {
     state = ValueNotifier(const UIInitialState());
     initQuiz();
-    Future.microtask(() async { 
+    Future.microtask(() async {
       await Future.delayed(const Duration(seconds: 2));
       start();
     });
@@ -45,15 +43,14 @@ class ChatController extends BaseController with MessagesMixin {
     notifyListeners();
   }
 
-
   void reply(AnswerValues value) async {
-    answers.add(AnswerEntity(value: value.asInt(), userId: currentUser?.uid ?? ''));
+    answers.add(
+        AnswerEntity(value: value.asInt(), questionId: currentQuestionIndex));
     inserReply(value.asString(), currentUser?.displayName ?? '');
     notifyListeners();
     _scrollToEnd();
 
- 
-    if (currentQuestionIndex != 9 ) {
+    if (currentQuestionIndex != 9) {
       nextQuestion();
       state.value = LoadingMessageState(currentQuestionIndex);
       await Future.delayed(const Duration(milliseconds: 500));
@@ -74,9 +71,22 @@ class ChatController extends BaseController with MessagesMixin {
     );
   }
 
-  void sendForm() {
-    final score = answers.fold<int>(0, (prev, curr) => prev + curr.value);
-    print("SCORE: $score");
+  void sendForm() async {
+    try {
+      state.value = const UILoadingState();
+      final score = answers.fold<int>(0, (prev, curr) => prev + curr.value);
+      final entity = QuizEntity(
+        value: score,
+        userId: currentUser?.uid ?? '',
+        creationDate: DateTime.now(),
+      );
+      await saveQuiz(
+        params: FirebaseSaveQuizParams(entity),
+      );
+      state.value = UISuccessState('Questionário salvo com sucesso!');
+    } catch (e) {
+      state.value = const UIErrorState('Erro ao salvar questionário');
+    }
   }
 
   @override

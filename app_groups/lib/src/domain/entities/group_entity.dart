@@ -1,5 +1,5 @@
-import 'package:app_groups/src/domain/entities/entities.dart';
 import 'package:common_deps/common_deps.dart';
+import 'package:common_quiz/common_quiz.dart';
 
 class GroupEntity extends Equatable {
   final String name;
@@ -64,8 +64,8 @@ class GroupEntity extends Equatable {
     'nome': name
   };
 
-  List<QuizEntity> healthyParticipants() => participants.where((e) => e.result >= 70).toList();
-  List<QuizEntity> sickParticipants() => participants.where((e) => e.result < 70).toList();
+  List<QuizEntity> healthyParticipants() => participants.where((e) => e.value >= 70).toList();
+  List<QuizEntity> sickParticipants() => participants.where((e) => e.value < 70).toList();
 
   @override
   List<Object?> get props => [

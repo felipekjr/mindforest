@@ -141,6 +141,13 @@ packages:
       relative: true
     source: path
     version: "0.0.1"
+  common_quiz:
+    dependency: transitive
+    description:
+      path: "../common_quiz"
+      relative: true
+    source: path
+    version: "0.0.1"
   common_ui:
     dependency: "direct main"
     description:

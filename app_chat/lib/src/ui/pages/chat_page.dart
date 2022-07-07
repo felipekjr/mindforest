@@ -21,6 +21,19 @@ class _ChatPageState extends State<ChatPage> {
   @override
   void initState() {
     controller.init();
+    controller.state.addListener(() {
+      final state = controller.state.value;
+      if (state is UIErrorState) {
+        showDialog(context: context, builder: (context) => ErrorDialog(message: state.description));
+      }
+      if (state is UISuccessState) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          backgroundColor: AppColors.purple ,
+          content: Text(state.description),
+        ));
+        Navigator.pop(context);
+      }
+    });
     super.initState();
   }
 
