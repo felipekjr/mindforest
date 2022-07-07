@@ -3,7 +3,7 @@ import 'package:common_ui/common_ui.dart';
 import 'package:common_user/common_user.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
-import '../../controllers/home_controller.dart';
+import 'home_controller.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);

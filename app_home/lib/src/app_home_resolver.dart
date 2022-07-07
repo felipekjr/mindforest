@@ -1,9 +1,9 @@
 import 'package:common_deps/common_deps.dart';
 import 'package:core/micro_app.dart';
 import 'package:core/micro_core_utils.dart';
+import 'package:core/routes.dart';
 
-import 'controllers/home_controller.dart';
-import 'ui/pages/home_page.dart';
+import 'presentation/presentation.dart';
 
 class AppHomeResolver implements MicroApp {
   @override
@@ -12,11 +12,13 @@ class AppHomeResolver implements MicroApp {
   @override
   void registerServices() {
     GetIt.I.registerSingleton<HomeController>(HomeController());
+    GetIt.I.registerSingleton<HistoryController>(HistoryController());
   }
 
   @override
   Map<String, WidgetBuilderArgs> get routes => {
-    name: (context, args) => const HomePage()
+    name: (context, args) => const HomePage(),
+    Routes.history: (context, args) => const 
   };
 
 }
