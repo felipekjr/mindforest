@@ -19,6 +19,8 @@ dependencies:
     path: ../common_ui
   common_user:
     path: ../common_user
+  common_quiz:
+    path: ../common_quiz
 
 dev_dependencies:
   flutter_test:

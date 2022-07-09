@@ -121,6 +121,7 @@ class _HomePageState extends State<HomePage> {
 
   HomeModuleButton personalProgress() {
     return HomeModuleButton(
+      onTap: () => Navigator.pushNamed(context, Routes.history),
       left: Image.asset(
         'assets/tree_health.png',
         width: 60,
@@ -139,14 +140,15 @@ class _HomePageState extends State<HomePage> {
 
   HomeModuleButton learn() {
     return HomeModuleButton(
+      onTap: () {},
       left: Image.asset(
         'assets/cactus.png',
         width: 60,
         height: 60,
       ),
       title: Text(
-        'Aprendizado',
-        style: TextStyles.medium(color: AppColors.black),
+        'Aprendizado (Em breve)',
+        style: TextStyles.medium(color: AppColors.grey),
       ),
       subtitle: Text(
         'Aprenda mais sobre saúde mental em nossa plataforma',
@@ -160,17 +162,20 @@ class HomeModuleButton extends StatelessWidget {
   final Widget left;
   final Widget title;
   final Widget subtitle;
+  final VoidCallback onTap;
 
-  const HomeModuleButton(
-      {Key? key,
-      required this.left,
-      required this.title,
-      required this.subtitle})
-      : super(key: key);
+  const HomeModuleButton({
+    Key? key,
+    required this.left,
+    required this.title,
+    required this.subtitle,
+    required this.onTap,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ShadowedContainer(
+      onTap: onTap,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

@@ -1,4 +1,5 @@
 import 'package:common_deps/common_deps.dart';
+import 'package:common_quiz/common_quiz.dart';
 import 'package:core/micro_app.dart';
 import 'package:core/micro_core_utils.dart';
 import 'package:core/routes.dart';
@@ -12,13 +13,15 @@ class AppHomeResolver implements MicroApp {
   @override
   void registerServices() {
     GetIt.I.registerSingleton<HomeController>(HomeController());
-    GetIt.I.registerSingleton<HistoryController>(HistoryController());
+    GetIt.I.registerSingleton<HistoryController>(HistoryController(
+      getQuiz: makeGetQuiz()
+    ));
   }
 
   @override
   Map<String, WidgetBuilderArgs> get routes => {
     name: (context, args) => const HomePage(),
-    Routes.history: (context, args) => const 
+    Routes.history: (context, args) => const HistoryPage()
   };
 
 }

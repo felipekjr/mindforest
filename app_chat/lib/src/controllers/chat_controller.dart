@@ -36,6 +36,7 @@ class ChatController extends BaseController with MessagesMixin {
     answers = [];
     currentQuestionIndex = 0;
     messages.add(questions.first);
+    notifyListeners();
   }
 
   void start() {
@@ -81,12 +82,17 @@ class ChatController extends BaseController with MessagesMixin {
         creationDate: DateTime.now(),
       );
       await saveQuiz(
-        params: FirebaseSaveQuizParams(entity),
+        params: makeSaveQuizParams(entity),
       );
       state.value = UISuccessState('Questionário salvo com sucesso!');
     } catch (e) {
       state.value = const UIErrorState('Erro ao salvar questionário');
     }
+  }
+
+  bool isActionsEnabled(UIState state) {
+    return state is! LoadingMessageState ||
+      currentQuestionIndex >= 1;
   }
 
   @override

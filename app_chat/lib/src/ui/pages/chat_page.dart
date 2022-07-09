@@ -67,7 +67,7 @@ class _ChatPageState extends State<ChatPage> {
       valueListenable: controller.state,
       builder: (context, state, _) {
         if (state is LoadingMessageState || state is UIInitialState) {
-          return actions(state is LoadingMessageState);
+          return actions(controller.isActionsEnabled(state));
         }
         return button();
       },
@@ -109,7 +109,8 @@ class _ChatPageState extends State<ChatPage> {
     );
   }
 
-  Widget actions(bool disabled) {
+  Widget actions(bool enabled) {
+    final disabled = !enabled;
     return Container(
       padding: const EdgeInsets.symmetric(
           vertical: Spacing.x1, horizontal: Spacing.x3),

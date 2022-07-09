@@ -29,6 +29,6 @@ class FirebaseSaveQuizParams extends SaveQuizParams {
     'id_grupo': entity.groupId,
     'id_usuario': entity.userId,
     'valor': entity.value,
-    'data_resposta': entity.creationDate
+    'data_resposta': entity.creationDate.toString()
   };
 }

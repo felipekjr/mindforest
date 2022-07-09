@@ -9,9 +9,9 @@ extension AnswerValuesExt on AnswerValues {
   int asInt() {
     switch (this) {
       case AnswerValues.never: return 0;
-      case AnswerValues.someDays: return 1;
-      case AnswerValues.severalDays: return 2;
-      default: return 3;
+      case AnswerValues.someDays: return 19;
+      case AnswerValues.severalDays: return 10;
+      default: return 11;
     }
   }
 
