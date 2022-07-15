@@ -11,3 +11,4 @@ export './healthy_counter.dart';
 export './header_section.dart';
 export './shadowed_container.dart';
 export './custom_spinner.dart';
+export './custom_dialog.dart';

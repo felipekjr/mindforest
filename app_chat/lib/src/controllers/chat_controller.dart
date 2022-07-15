@@ -1,8 +1,11 @@
 import 'package:app_chat/src/domain/entities/entities.dart';
+import 'package:app_groups/app_groups.dart';
 import 'package:common_deps/common_deps.dart';
 import 'package:common_quiz/common_quiz.dart';
+import 'package:common_ui/common_ui.dart';
 import 'package:common_user/common_user.dart';
 import 'package:core/core.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 import '../domain/helpers/helpers.dart';
@@ -12,11 +15,16 @@ import 'states/states.dart';
 class ChatController extends BaseController with MessagesMixin {
   final UserSessionService userSessionService;
   final SaveQuiz saveQuiz;
-
-  ChatController({required this.userSessionService, required this.saveQuiz});
+  final GroupRepository groupRepository;
+  ChatController({
+    required this.userSessionService, 
+    required this.saveQuiz,
+    required this.groupRepository
+  });
 
   List<AnswerEntity> answers = [];
-
+  String? groupAccessToken;
+  
   User? get currentUser => userSessionService.currentUser;
 
   final ScrollController messagesScrollController = ScrollController();
@@ -24,11 +32,9 @@ class ChatController extends BaseController with MessagesMixin {
   @override
   void init() {
     state = ValueNotifier(const UIInitialState());
+    
     initQuiz();
-    Future.microtask(() async {
-      await Future.delayed(const Duration(seconds: 2));
-      start();
-    });
+    start();
   }
 
   void initQuiz() {
@@ -40,6 +46,13 @@ class ChatController extends BaseController with MessagesMixin {
   }
 
   void start() {
+    nextQuestion();
+    notifyListeners();
+  }
+
+  void replyGroupToken(String res) {
+    groupAccessToken = res;
+    inserReply(res, currentUser?.displayName ?? '');
     nextQuestion();
     notifyListeners();
   }
@@ -76,10 +89,14 @@ class ChatController extends BaseController with MessagesMixin {
     try {
       state.value = const UILoadingState();
       final score = answers.fold<int>(0, (prev, curr) => prev + curr.value);
+      final groupId = groupAccessToken != null 
+        ? (await groupRepository.getByToken(groupAccessToken!))?.id 
+        : null;
       final entity = QuizEntity(
         value: score,
         userId: currentUser?.uid ?? '',
         creationDate: DateTime.now(),
+        groupId: groupId
       );
       await saveQuiz(
         params: makeSaveQuizParams(entity),

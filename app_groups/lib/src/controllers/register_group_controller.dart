@@ -1,4 +1,5 @@
 
+import 'package:app_groups/src/core/helpers/random_generator_helper.dart';
 import 'package:app_groups/src/domain/entities/group_entity.dart';
 import 'package:common_deps/common_deps.dart';
 import 'package:core/helpers/helpers.dart';
@@ -23,9 +24,13 @@ class RegisterGroupController extends BaseController {
 
   void saveGroup() async {
     try {
+      
       state.value = const UILoadingState();
       final userId = FirebaseAuth.instance.currentUser?.uid;
-      final group = groupEntity.copy(userId: userId);
+      final group = groupEntity.copy(
+        userId: userId,
+        accessToken: RandomGeneratorHelper().getRandomString(6)
+      );
       await repository.save(group);
       state.value = UISuccessState('Grupo cadastrado com sucesso!');
     } catch (e) {

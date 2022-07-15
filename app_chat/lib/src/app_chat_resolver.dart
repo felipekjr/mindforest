@@ -1,3 +1,4 @@
+import 'package:app_groups/app_groups.dart';
 import 'package:common_deps/common_deps.dart';
 import 'package:common_quiz/common_quiz.dart';
 import 'package:common_user/common_user.dart';
@@ -22,7 +23,8 @@ class AppChatResolver implements MicroApp {
     
     GetIt.I.registerSingleton(ChatController(
       userSessionService: userSessionService,
-      saveQuiz: makeSaveQuiz()
+      saveQuiz: makeSaveQuiz(),
+      groupRepository: GroupRepository()
     ));
   }
 

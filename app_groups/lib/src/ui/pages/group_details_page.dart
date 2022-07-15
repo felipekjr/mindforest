@@ -65,6 +65,7 @@ class _GroupDetailsPageState extends State<GroupDetailsPage>  with SingleTickerP
       state: controller.state,
       children: [
         editableTitleRow(),
+        tokenTitle(),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: Spacing.x4),
           child: ShadowedContainer(
@@ -102,6 +103,20 @@ class _GroupDetailsPageState extends State<GroupDetailsPage>  with SingleTickerP
         style: TextStyles.titleLarge(color: _getScoreColor(value)),
       );
     }
+  );
+
+  Column tokenTitle() => Column(
+    children: [
+      Text('Código do Grupo:', style: TextStyles.normal(),),
+      const SizedBox(height: Spacing.x1,),
+      Center(
+        child: AnimatedBuilder(
+          animation: controller,
+          builder: (context, _) => SelectableText(
+            controller.currentGroup.accessToken, style: TextStyles.medium(),)
+        ),
+      ),
+    ],
   );
 
   AnimatedBuilder deleteButton() => AnimatedBuilder(

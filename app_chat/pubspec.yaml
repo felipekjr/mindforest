@@ -21,6 +21,9 @@ dependencies:
     path: ../common_user
   common_quiz:
     path: ../common_quiz
+  app_groups:
+    path: ../app_groups
+    
 dev_dependencies:
   flutter_test:
     sdk: flutter

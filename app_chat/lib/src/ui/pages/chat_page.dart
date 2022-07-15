@@ -17,6 +17,7 @@ class ChatPage extends StatefulWidget {
 
 class _ChatPageState extends State<ChatPage> {
   final controller = GetIt.I<ChatController>();
+  final TextEditingController inputController = TextEditingController();
 
   @override
   void initState() {
@@ -24,11 +25,13 @@ class _ChatPageState extends State<ChatPage> {
     controller.state.addListener(() {
       final state = controller.state.value;
       if (state is UIErrorState) {
-        showDialog(context: context, builder: (context) => ErrorDialog(message: state.description));
+        showDialog(
+            context: context,
+            builder: (context) => ErrorDialog(message: state.description));
       }
       if (state is UISuccessState) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          backgroundColor: AppColors.purple ,
+          backgroundColor: AppColors.purple,
           content: Text(state.description),
         ));
         Navigator.pop(context);
@@ -62,15 +65,62 @@ class _ChatPageState extends State<ChatPage> {
     );
   }
 
-  ValueListenableBuilder<UIState> actionSection() {
-    return ValueListenableBuilder<UIState>(
-      valueListenable: controller.state,
-      builder: (context, state, _) {
-        if (state is LoadingMessageState || state is UIInitialState) {
-          return actions(controller.isActionsEnabled(state));
+  AnimatedBuilder actionSection() {
+    return AnimatedBuilder(
+      animation: controller,
+      builder: (context, _) {
+        if (controller.currentQuestionIndex == 1) {
+          return _buildUserInput();
+        }
+        if (controller.state.value is LoadingMessageState || controller.state.value is UIInitialState) {
+          return actions(controller.isActionsEnabled(controller.state.value));
         }
         return button();
       },
+    );
+  }
+
+  Widget _buildTextField() {
+    return Flexible(
+      child: TextField(
+        controller: inputController,
+        onChanged: (String v) => inputController.text = v,
+        decoration: InputDecoration.collapsed(
+          hintText: "Código do grupo",
+        ),
+      ),
+    );
+  }
+
+  // Botão para enviar a mensagem
+  Widget _buildSendButton() {
+    return Container(
+      margin: const EdgeInsets.only(left: 8.0),
+      child: PrimaryButton(
+        onTap: () {
+          if (inputController.text.isNotEmpty) {
+            controller.replyGroupToken(inputController.text);
+          } else {
+            controller.nextQuestion();
+            controller.notifyListeners();
+          }
+        },
+        title: 'Enviar'
+      ),
+    );
+  }
+
+  // Monta uma linha com o campo de text e o botão de enviao
+  Widget _buildUserInput() {
+    return Container(
+      color: Colors.white,
+      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      child: Row(
+        children: <Widget>[
+          _buildTextField(),
+          _buildSendButton(),
+        ],
+      ),
     );
   }
 
@@ -88,10 +138,7 @@ class _ChatPageState extends State<ChatPage> {
     return Flexible(
       child: AnimatedBuilder(
         animation: controller,
-        builder: (
-          context,
-          _
-        ) {
+        builder: (context, _) {
           return ListView.builder(
             controller: controller.messagesScrollController,
             padding: const EdgeInsets.all(8.0),
@@ -99,7 +146,8 @@ class _ChatPageState extends State<ChatPage> {
               return MessageListItem(
                 key: Key('message_$index'),
                 chatMessage: controller.messages[index],
-                loading: controller.state.value is LoadingMessageState && index == controller.messages.length - 1,
+                loading: controller.state.value is LoadingMessageState &&
+                    index == controller.messages.length - 1,
               );
             },
             itemCount: controller.messages.length,

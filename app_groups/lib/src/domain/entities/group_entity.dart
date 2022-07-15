@@ -9,14 +9,16 @@ class GroupEntity extends Equatable {
   final List<QuizEntity> participants;
   final bool isActive;
   final String userId;
+  final String accessToken;
 
   const GroupEntity({
     required this.name,
-    required this.totalScore,
     required this.creationDate,
     required this.isActive,
     required this.userId,
+    required this.accessToken,
     this.participants = const [],
+    this.totalScore = 0,
     this.id,
   });
 
@@ -25,7 +27,8 @@ class GroupEntity extends Equatable {
     totalScore: 0, 
     creationDate: DateTime.now(), 
     isActive: true, 
-    userId: ''
+    userId: '',
+    accessToken: ''
   );
 
   GroupEntity copy({
@@ -35,7 +38,8 @@ class GroupEntity extends Equatable {
     DateTime? creationDate,
     bool? isActive,
     num? totalScore,
-    String? userId
+    String? userId,
+    String? accessToken,
   }) => GroupEntity(
     name: name ?? this.name, 
     id: id ?? this.id, 
@@ -43,16 +47,17 @@ class GroupEntity extends Equatable {
     creationDate: creationDate ?? this.creationDate,
     isActive: isActive ?? this.isActive,
     userId: userId ?? this.userId,
-    participants: participants ?? this.participants
+    participants: participants ?? this.participants,
+    accessToken: accessToken ?? this.accessToken
   );
 
   factory GroupEntity.fromJson(Map json) {
     return GroupEntity(
       name: json['nome'], 
-      totalScore: json['media_pontuacao'], 
       creationDate: DateTime.parse(json['data_criacao']),
       isActive: json['ativo'],
-      userId: json['id_usuario']
+      userId: json['id_usuario'],
+      accessToken: json['token']
     );
   }
 
@@ -60,8 +65,8 @@ class GroupEntity extends Equatable {
     'ativo' : isActive,
     'data_criacao': creationDate.toString(),
     'id_usuario': userId,
-    'media_pontuacao': totalScore,
-    'nome': name
+    'nome': name,
+    'token': accessToken
   };
 
   List<QuizEntity> healthyParticipants() => participants.where((e) => e.value >= 70).toList();
@@ -69,6 +74,6 @@ class GroupEntity extends Equatable {
 
   @override
   List<Object?> get props => [
-    name, id, totalScore, participants, creationDate, isActive, userId
+    name, id, totalScore, participants, creationDate, isActive, userId, accessToken
   ];
 } 

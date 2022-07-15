@@ -25,6 +25,14 @@ class GroupRepository {
     return null;
   } 
 
+  Future<GroupEntity?> getByToken(String token) async {
+    final snapshot = await FirebaseFirestore.instance.collection('grupos')
+      .where('token', isEqualTo: token)
+      .get();
+
+    return GroupEntity.fromJson(snapshot.docs.first.data()).copy(id: snapshot.docs.first.id);
+  } 
+
   Future<bool> delete(String id) async {
     return FirebaseFirestore.instance.collection("grupos").doc(id).delete().then(
       (doc) => true,
@@ -41,7 +49,8 @@ class GroupRepository {
   } 
 
   Future<GroupEntity> save(GroupEntity entity) async {
-    final res = await FirebaseFirestore.instance.collection('grupos')
+    final res = await FirebaseFirestore.instance
+      .collection('grupos')
       .add(entity.toJson());
     return entity.copy(id: res.id);
   }

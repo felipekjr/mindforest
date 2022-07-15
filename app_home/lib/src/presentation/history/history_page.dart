@@ -76,7 +76,7 @@ class _HistoryPageState extends State<HistoryPage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(quiz.creationDate.formatted(), style: TextStyles.normal(color: AppColors.grey),),
+                Text(quiz.creationDate.formatted(showHour: true), style: TextStyles.normal(color: AppColors.black),),
                 Text(
                   quiz.value.toString(),
                   style: TextStyles.normalBold(color: controller.getValueColor(quiz.value)),
