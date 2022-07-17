@@ -16,7 +16,7 @@ class GroupDetailsPage extends StatefulHookWidget {
 class _GroupDetailsPageState extends State<GroupDetailsPage>  with SingleTickerProviderStateMixin {
   final controller = GetIt.instance<GroupDetailsController>();
   late final AnimationController animationController;
-  late final animationCounter;
+  late final Animation<double> animationCounter;
 
   @override
   void initState() {
@@ -24,7 +24,7 @@ class _GroupDetailsPageState extends State<GroupDetailsPage>  with SingleTickerP
     animationController = AnimationController(duration: const Duration(seconds: 1), vsync: this);
     animationCounter = Tween<double>(
       begin: 0,
-      end: controller.currentGroup.totalScore.toDouble()
+      end: controller.currentGroup.averageScore
     ).animate(CurvedAnimation(parent: animationController, curve: Curves.bounceInOut));
 
     animationController.forward();

@@ -1,6 +1,7 @@
 
 import 'package:app_groups/src/domain/entities/group_entity.dart';
 import 'package:common_deps/common_deps.dart';
+import 'package:common_quiz/common_quiz.dart';
 import 'package:core/helpers/helpers.dart';
 import 'package:flutter/material.dart';
 
@@ -8,10 +9,12 @@ import '../data/repositories/group_repository.dart';
 
 class GroupsController extends BaseController {
   final GroupRepository repository;
+  final GetQuizByGroup getQuizByGroup;
   late ValueNotifier<List<GroupEntity>?> groupsNotifier;
 
   GroupsController({
-    required this.repository
+    required this.repository,
+    required this.getQuizByGroup
   });
 
   @override
@@ -25,10 +28,20 @@ class GroupsController extends BaseController {
     try {
       state.value = const UILoadingState();
       final userId = FirebaseAuth.instance.currentUser?.uid;
-      groupsNotifier.value = await repository.getAll(userId!);
+      final list = await repository.getAll(userId!);
+      groupsNotifier.value = await _getQuizFromGroups(list);
     } catch (e) {
       state.value = const UIErrorState('Erro ao recuperar grupos');
     }
+  }
+
+  Future<List<GroupEntity>> _getQuizFromGroups(List<GroupEntity> list) async {
+    final newList = <GroupEntity>[];
+    await Future.forEach(list, (GroupEntity element) async {
+      final quizList = await getQuizByGroup.call(params: makeGetQuizByGroupParams(element.id!));
+      newList.add(element.copy(participants: quizList));
+    });
+    return newList;
   }
 
   @override

@@ -8,10 +8,10 @@ enum AnswerValues {
 extension AnswerValuesExt on AnswerValues {
   int asInt() {
     switch (this) {
-      case AnswerValues.never: return 0;
-      case AnswerValues.someDays: return 19;
-      case AnswerValues.severalDays: return 10;
-      default: return 11;
+      case AnswerValues.never: return 11;
+      case AnswerValues.someDays: return 8;
+      case AnswerValues.severalDays: return 5;
+      default: return 0;
     }
   }
 

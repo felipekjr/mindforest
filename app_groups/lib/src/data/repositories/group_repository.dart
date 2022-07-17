@@ -1,5 +1,6 @@
 import 'package:app_groups/src/domain/entities/group_entity.dart';
 import 'package:common_deps/common_deps.dart';
+import 'package:common_quiz/common_quiz.dart';
 
 class GroupRepository {
   
@@ -8,11 +9,12 @@ class GroupRepository {
       .where('id_usuario', isEqualTo: userId)
       .get();
     
-    final list =  snapshot.docs.map((e) {
+    List<GroupEntity> list = snapshot.docs.map((e) {
       return GroupEntity.fromJson(e.data()).copy(id: e.id);
-    }).toList();
+    }).toList();  
 
     list.sort((a, b) => a.creationDate.isBefore(b.creationDate) ? 1 : 0);
+
     return list;
   }
 

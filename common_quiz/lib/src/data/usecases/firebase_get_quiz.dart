@@ -25,5 +25,7 @@ class FirebaseGetQuiz implements GetQuiz<FirebaseGetQuizParams> {
 }
 
 class FirebaseGetQuizParams extends GetQuizParams {
-  FirebaseGetQuizParams(String userId) : super(userId);
+  String? groupId;
+
+  FirebaseGetQuizParams(String userId, {this.groupId}) : super(userId);
 }

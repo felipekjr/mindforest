@@ -4,7 +4,6 @@ import 'package:common_quiz/common_quiz.dart';
 class GroupEntity extends Equatable {
   final String name;
   final String? id;
-  final num totalScore;
   final DateTime creationDate;
   final List<QuizEntity> participants;
   final bool isActive;
@@ -18,13 +17,11 @@ class GroupEntity extends Equatable {
     required this.userId,
     required this.accessToken,
     this.participants = const [],
-    this.totalScore = 0,
     this.id,
   });
 
   factory GroupEntity.empty() => GroupEntity(
     name: '', 
-    totalScore: 0, 
     creationDate: DateTime.now(), 
     isActive: true, 
     userId: '',
@@ -43,7 +40,6 @@ class GroupEntity extends Equatable {
   }) => GroupEntity(
     name: name ?? this.name, 
     id: id ?? this.id, 
-    totalScore: totalScore ?? this.totalScore, 
     creationDate: creationDate ?? this.creationDate,
     isActive: isActive ?? this.isActive,
     userId: userId ?? this.userId,
@@ -71,9 +67,10 @@ class GroupEntity extends Equatable {
 
   List<QuizEntity> healthyParticipants() => participants.where((e) => e.value >= 70).toList();
   List<QuizEntity> sickParticipants() => participants.where((e) => e.value < 70).toList();
+  double get averageScore => participants.fold<double>(0.0, (prev, curr) => prev + curr.value) / participants.length;
 
   @override
   List<Object?> get props => [
-    name, id, totalScore, participants, creationDate, isActive, userId, accessToken
+    name, id, participants, creationDate, isActive, userId, accessToken
   ];
 } 
