@@ -2,9 +2,8 @@ import 'package:app_groups/src/data/repositories/repositories.dart';
 import 'package:app_groups/src/ui/pages/pages.dart';
 import 'package:common_deps/common_deps.dart';
 import 'package:common_quiz/common_quiz.dart';
-import 'package:core/micro_app.dart';
-import 'package:core/micro_core_utils.dart';
-import 'package:core/routes.dart';
+import 'package:core/core.dart';
+
 
 import 'controllers/controllers.dart';
 

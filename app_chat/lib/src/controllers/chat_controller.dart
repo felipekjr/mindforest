@@ -2,7 +2,6 @@ import 'package:app_chat/src/domain/entities/entities.dart';
 import 'package:app_groups/app_groups.dart';
 import 'package:common_deps/common_deps.dart';
 import 'package:common_quiz/common_quiz.dart';
-import 'package:common_ui/common_ui.dart';
 import 'package:common_user/common_user.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';

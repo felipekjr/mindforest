@@ -1,8 +1,7 @@
 
 import 'package:app_login/src/presentation/controllers/login_controller.dart';
 import 'package:common_deps/common_deps.dart';
-import 'package:core/micro_app.dart';
-import 'package:core/micro_core_utils.dart';
+import 'package:core/core.dart';
 
 import 'presentation/pages/pages.dart';
 

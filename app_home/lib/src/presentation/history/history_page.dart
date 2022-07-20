@@ -1,8 +1,7 @@
 import 'package:common_deps/common_deps.dart';
 import 'package:common_quiz/common_quiz.dart';
 import 'package:common_ui/common_ui.dart';
-import 'package:core/extensions/datetime_extension.dart';
-import 'package:core/widgets/base_page.dart';
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
 import '../presentation.dart';

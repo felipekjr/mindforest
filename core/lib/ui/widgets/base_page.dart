@@ -2,8 +2,8 @@ import 'package:common_deps/common_deps.dart' as cd;
 import 'package:common_ui/common_ui.dart';
 import 'package:common_user/common_user.dart';
 import 'package:flutter/material.dart';
-import '../helpers/ui_state.dart';
-import '../routes.dart';
+import '../../core/core.dart';
+import '../../presentation/presentation.dart';
 
 class BasePageWidget extends StatefulWidget {
   final String? title;

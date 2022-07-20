@@ -1,7 +1,7 @@
 
 import 'package:common_deps/common_deps.dart';
 import 'package:common_user/common_user.dart';
-import 'package:core/helpers/helpers.dart';
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
 import '../../domain/entities/entities.dart';

@@ -7,7 +7,9 @@ class MessageListItem extends StatelessWidget {
   final MessageEntity chatMessage;
   final bool loading;
 
-  const MessageListItem({Key? key, required this.chatMessage, this.loading = false}) : super (key: key);
+  const MessageListItem(
+      {Key? key, required this.chatMessage, this.loading = false})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,8 +31,16 @@ class MessageListItem extends StatelessWidget {
           ),
           backgroundColor: AppColors.secondary,
         ),
-        title: Text(chatMessage.name, textAlign: TextAlign.right),
-        subtitle: Text(chatMessage.text, textAlign: TextAlign.right),
+        title: Text(
+          chatMessage.name,
+          textAlign: TextAlign.right,
+          style: TextStyles.normalBold(),
+        ),
+        subtitle: Text(
+          chatMessage.text,
+          textAlign: TextAlign.right,
+          style: TextStyles.normal(),
+        ),
       ),
     );
   }
@@ -54,22 +64,32 @@ class MessageListItem extends StatelessWidget {
             ),
           ),
         ),
-        title: Text(chatMessage.name, textAlign: TextAlign.left),
-        subtitle: loading ? loadBubble() : Text(chatMessage.text, textAlign: TextAlign.left),
+        title: Text(
+          chatMessage.name,
+          textAlign: TextAlign.left,
+          style: TextStyles.normalBold(),
+        ),
+        subtitle: loading
+            ? loadBubble()
+            : Text(
+                chatMessage.text,
+                textAlign: TextAlign.left,
+                style: TextStyles.normal(),
+              ),
       ),
     );
   }
 
   Widget loadBubble() => Padding(
-    padding: const EdgeInsets.only(right: Spacing.x12 * 2),
-    child: Container(
-      height: 30,
-      padding: const EdgeInsets.all(Spacing.x1),
-      decoration: BoxDecoration(
-        color: Colors.grey[300],
-        borderRadius: BorderRadius.circular(50)
-      ),
-      child: CustomSpinner(color: AppColors.black,)
-    ),
-  );
+        padding: const EdgeInsets.only(right: Spacing.x12 * 2),
+        child: Container(
+            height: 30,
+            padding: const EdgeInsets.all(Spacing.x1),
+            decoration: BoxDecoration(
+                color: Colors.grey[300],
+                borderRadius: BorderRadius.circular(50)),
+            child: CustomSpinner(
+              color: AppColors.black,
+            )),
+      );
 }

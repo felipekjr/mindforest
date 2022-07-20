@@ -1,6 +1,6 @@
 import 'package:common_deps/common_deps.dart';
 import 'package:common_ui/common_ui.dart';
-import 'package:core/routes.dart';
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
 import '../../controllers/controllers.dart';

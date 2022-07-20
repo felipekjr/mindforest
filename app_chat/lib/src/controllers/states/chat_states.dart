@@ -1,4 +1,4 @@
-import 'package:core/helpers/helpers.dart';
+import 'package:core/core.dart';
 
 class LoadingMessageState extends UIState {
   final int messageIndex;
